@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '2.0.0'
@@ -41,3 +41,30 @@ gem 'jbuilder', '~> 1.2'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+#add :git to bugfix open dialog error
+gem "ckeditor", :git => "git@github.com:galetahub/ckeditor.git"
+#File upload
+gem 'paperclip'
+gem 'paperclip-qiniu'
+#I18n
+gem 'rails-i18n', '~> 4.0.0.pre' # For 4.0.x
+gem 'i18n_yaml_generator'
+gem 'chinese_pinyin'
+gem 'bootstrap-will_paginate'
+gem 'bootstrap-sass'
+gem 'cancan'
+gem 'devise'
+gem 'figaro'
+gem 'mysql2', '0.3.13'
+gem 'rolify'
+gem 'simple_form'
+gem 'therubyracer', :platform=>:ruby
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
+  gem 'hub', :require=>nil
+  gem 'quiet_assets'
+  gem 'rails_layout'
+end
+
