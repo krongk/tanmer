@@ -55,7 +55,7 @@ gem 'bootstrap-sass'
 gem 'cancan'
 gem 'devise'
 gem 'figaro'
-gem 'mysql2', '0.3.13'
+
 gem 'rolify'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
