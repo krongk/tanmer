@@ -1,0 +1,24 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      page: 页面
+    attributes:
+      page:
+        user: 用户
+        title: 标题
+        keywords: 关键词
+        description: 摘要描述
+        content: 内容
+        qrcode: 二维码
+        short_title: 短地址
+        properties: 型号
+        amount: 数量
+        price: 价格
+        view_count: 浏览量
+        fav_count: 收藏量
+        is_processed: 是否处理
+    errors:
+      page: 
+  helpers:
+    page: 

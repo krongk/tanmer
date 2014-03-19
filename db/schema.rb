@@ -11,7 +11,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318121518) do
+ActiveRecord::Schema.define(version: 20140319080920) do
+
+  create_table "books", force: true do |t|
+    t.integer  "page_id",                    null: false
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "message"
+    t.string   "is_processed", default: "n", null: false
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "books", ["is_processed"], name: "index_books_on_is_processed", using: :btree
+  add_index "books", ["page_id"], name: "index_books_on_page_id", using: :btree
+
+  create_table "keystores", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.string   "key",        null: false
+    t.string   "value",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "keystores", ["user_id", "key"], name: "index_keystores_on_user_id_and_key", unique: true, using: :btree
+  add_index "keystores", ["user_id"], name: "index_keystores_on_user_id", using: :btree
+
+  create_table "pages", force: true do |t|
+    t.integer  "user_id",                                                                null: false
+    t.string   "title",                                                                  null: false
+    t.string   "keywords"
+    t.string   "description"
+    t.text     "content",      limit: 2147483647
+    t.string   "qrcode"
+    t.string   "short_title"
+    t.string   "properties"
+    t.integer  "amount"
+    t.decimal  "price",                           precision: 10, scale: 0
+    t.integer  "view_count",                                               default: 0
+    t.integer  "fav_count",                                                default: 0
+    t.string   "is_processed",                                             default: "n", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["is_processed"], name: "index_pages_on_is_processed", using: :btree
+  add_index "pages", ["title"], name: "index_pages_on_title", using: :btree
+  add_index "pages", ["user_id", "short_title"], name: "index_pages_on_user_id_and_short_title", unique: true, using: :btree
+  add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -23,6 +73,23 @@ ActiveRecord::Schema.define(version: 20140318121518) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string "name"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

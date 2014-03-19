@@ -1,0 +1,24 @@
+---
+en:
+  active_record:
+    models:
+      page: Page
+    attributes:
+      page:
+        user: User
+        title: Title
+        keywords: Keywords
+        description: Description
+        content: Content
+        qrcode: Qrcode
+        short_title: Short title
+        properties: Properties
+        amount: Amount
+        price: Price
+        view_count: View count
+        fav_count: Fav count
+        is_processed: Is processed
+    errors:
+      page: 
+  helpers:
+    page: 

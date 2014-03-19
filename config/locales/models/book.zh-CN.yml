@@ -1,0 +1,19 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      book: 订单
+    attributes:
+      book:
+        page: 产品
+        name: 姓名
+        email: 电子邮件
+        phone: 电话号码
+        address: 地址
+        message: 留言
+        is_processed: 是否处理
+        note: 备注
+    errors:
+      book: 
+  helpers:
+    book: 

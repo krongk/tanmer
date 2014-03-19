@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Page:</strong>
+  <%= @book.page %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @book.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @book.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @book.phone %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @book.address %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @book.message %>
+</p>
+
+<p>
+  <strong>Is processed:</strong>
+  <%= @book.is_processed %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @book.note %>
+</p>
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>

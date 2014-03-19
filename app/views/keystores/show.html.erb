@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @keystore.user %>
+</p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @keystore.key %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @keystore.value %>
+</p>
+
+<%= link_to 'Edit', edit_keystore_path(@keystore) %> |
+<%= link_to 'Back', keystores_path %>

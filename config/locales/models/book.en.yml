@@ -1,0 +1,19 @@
+---
+en:
+  active_record:
+    models:
+      book: Book
+    attributes:
+      book:
+        page: Page
+        name: Name
+        email: Email
+        phone: Phone
+        address: Address
+        message: Message
+        is_processed: Is processed
+        note: Note
+    errors:
+      book: 
+  helpers:
+    book: 

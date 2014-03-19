@@ -1,0 +1,37 @@
+<%= simple_form_for([current_user, @page]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="controls">
+    <%#= f.association :user %>
+    <%= f.input :title %>
+    <%= f.input :keywords %>
+    <%= f.input :description, :as => :text %>
+    <%#= f.input :content %>
+    <%= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'custom', height: "600px"} } %>
+  </div>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">
+            更多选项
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= f.input :properties %>
+          <%= f.input :amount %>
+          <%= f.input :price %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-large btn-primary" %>
+    <a href="/" class="btn btn-grey">取 消</a>
+  </div>
+<% end %>
+

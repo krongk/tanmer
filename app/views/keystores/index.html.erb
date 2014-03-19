@@ -1,0 +1,31 @@
+<h1>Listing keystores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Key</th>
+      <th>Value</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @keystores.each do |keystore| %>
+      <tr>
+        <td><%= keystore.user %></td>
+        <td><%= keystore.key %></td>
+        <td><%= keystore.value %></td>
+        <td><%= link_to 'Show', keystore %></td>
+        <td><%= link_to 'Edit', edit_keystore_path(keystore) %></td>
+        <td><%= link_to 'Destroy', keystore, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Keystore', new_keystore_path %>

@@ -1,0 +1,15 @@
+<div class="content">
+  <div class="page">
+    <article>
+      <div class="page-header">
+        <h1> <%= @page.title %></h1>
+        <p class="lead"><%= @page.description %></p>
+      </div><!-- end page-header -->
+      <%= raw @page.content %>
+      <% if user_signed_in? && current_user.id == @page.user_id %>
+        <%= link_to '修改', edit_user_page_path(current_user, @page), class: 'btn btn-primary btn-large' %> |
+        <%= link_to '删除', [current_user, @page], method: :delete, data: { confirm: '删除以后无法恢复，确定要删除吗?' }, class: 'btn btn-grey btn-large' %>
+      <% end %>
+    </article>
+  </div><!-- end page -->
+</div><!-- end content -->
