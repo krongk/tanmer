@@ -51,7 +51,6 @@ module ApplicationHelper
       page.tag_list.add(tag)
       page.save!
     end
-    puts "..................."
     return true
   end
 
