@@ -1,9 +1,8 @@
 <% content_for :side_bar do %>
   <% if @user && params[:qrcode].nil? %>
     <ul class="nav navbar-nav filter-portfolio">
-      <li class="title">产品系列</li>
       <% @user.pages.tag_counts.each do |tag| %>
-         <li><%= link_to tag_path(@user, tag.name) do %>
+         <li><%= link_to tag_path(@user, tag.name), 'data-filter' => ".#{tag.name}" do %>
             <i class="fa fa-tags"></i>  <%= tag.name %>
          <% end %><span>(<%= tag.count %>)</span> </li>
       <% end %>

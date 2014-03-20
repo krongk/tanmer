@@ -34,8 +34,23 @@
         <dt><i class="fa fa-shopping-cart"></i> 在线预定，快速获取消费订单！</dt>
         <dd>商家通过二维码营销，打通多渠道网络流量入口； 用户可以通过二维码扫描产品并在线预定，快速实现流量转化！</dd>
       </dl>
-      <hr />
+      <ul class="list-unstyled post-meta">
+        <li class="text-center"><a id="online-order" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="联系我们">联系我们，马上开启二维码营销</a></li>
+      </ul>
     </article>
   </div><!-- end page -->
 </div><!-- end content -->
-  
+
+<div id="order-form">
+  <%= simple_form_for(@book) do |f| %>
+    <%= f.error_notification %>
+    <div class="form-group">
+      <%= f.association :page, as: :hidden, input_html: { value: 1} %>
+      <%= f.input :phone %>
+      <%= f.input :message %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, input_html: {class: 'btn btn-primary'} %>
+    </div>
+  <% end %>
+</div>

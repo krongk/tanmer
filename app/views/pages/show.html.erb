@@ -19,13 +19,13 @@
         <div class="col-md-12">
           <ul class="list-unstyled post-meta">
             <% unless @page.properties.blank? %>
-              <li><span class="fa fa-calendar"></span>型号： <%= @page.properties %> </li>
+              <li><span class="fa fa-th"></span>型号： <%= @page.properties %> </li>
             <% end %>
             <% unless @page.amount.blank? %>
-              <li><span class="fa fa-calendar"></span>库存： <%= @page.amount %> </li>
+              <li><span class="fa fa-sort-amount-asc"></span>库存： <%= @page.amount %> </li>
             <% end %>
             <% unless @page.price.blank? %>
-              <li><span class="fa fa-calendar"></span>价格： <%= @page.price %> </li>
+              <li><span class="fa fa-cny"></span>价格： <%= @page.price %> </li>
             <% end %>
             <li class="text-center"><a id="online-order" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="在线预定">在线预定</a></li>
           </ul><!-- end post-meta -->

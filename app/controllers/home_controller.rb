@@ -2,6 +2,9 @@
 class HomeController < ApplicationController
   before_action :set_user, only: [:index, :search]
 
+  def index
+    @book = Book.new #联系我们
+  end
   #案例中心
   def case
     @user = User.first

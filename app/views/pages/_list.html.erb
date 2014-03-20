@@ -1,5 +1,5 @@
 <% @pages.each do |page| %>
-  <div class="card film art">
+  <div class="card <%= page.tag_list %>">
     <%= link_to get_url(page), class: 'thumb' do %>
       <img src="<%= page.image %>" alt="<%= page.title %>" title="<%= page.title %>" />
       <span class="overlay"><span class="fa fa-search"></span></span>
