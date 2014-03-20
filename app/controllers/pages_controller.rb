@@ -55,7 +55,7 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.update(page_params)
         update_tag(@page)
-        generate_qrcode(@page) if @page.qrcode.blank?
+        generate_qrcode(@page)
 
         format.html { redirect_to user_page_path(current_user, @page), notice: "更新成功， <a href='/users/#{current_user.id}/pages/new'>点击这里添加新产品</a>." }
         format.json { head :no_content }
