@@ -114,7 +114,12 @@ class PagesController < ApplicationController
 
       qr_dir = File.join(Rails.root, 'public', 'qrcode', current_user.id.to_s)
       FileUtils.mkdir_p qr_dir
-      png.resize(120, 120).save(File.join(qr_dir, "#{page.id}.png" ))
+      png_path = File.join(qr_dir, "#{page.id}.png")
+      if File.exist? png_path
+        FileUtils.rm png_path
+      end
+
+      png.resize(120, 120).save(png_path)
 
       page.qrcode = "/qrcode/#{current_user.id}/#{page.id}.png"
       page.save!
