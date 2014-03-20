@@ -2,7 +2,7 @@ class Page < ActiveRecord::Base
   belongs_to :user
   acts_as_taggable
   validates :title, :content, presence: true
-  before_save :create_unique_short_title
+  after_create :create_unique_short_title
 
   #extract image url from content
   def image
