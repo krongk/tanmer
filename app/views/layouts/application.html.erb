@@ -16,7 +16,11 @@
           <div class="navbar" role="navigation">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> 导航</button>
-              <a href="index.html" class="navbar-brand">探码</a>
+              <% if u = (current_user || @user) %>
+                <a href="/<%= u.id %>" class="navbar-brand"><%= u.name %></a>
+              <% else %>
+                <a href="/" class="navbar-brand">探码</a>
+              <% end %>
               <p class="brand-text">产品二维码展示系统</p>
             </div><!-- end navbar-header -->
             <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
@@ -25,35 +29,46 @@
                 <li class="active"><a href="/">关于</a></li>
                 <%= render 'layouts/navigation_links' %>
               </ul>
-              
-              <form class="navbar-form" role="search">
+              <ul class="nav navbar-nav nav-social hidden-sm hidden-xs">
+                <% if user_signed_in? %>
+                  <li class="title">管理</li>
+                  <li>
+                    <%= link_to user_pages_path(current_user.id) do %>
+                      <i class="fa fa-list"></i>  产品列表
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to books_path do %>
+                      <i class="fa fa-book"></i>  查看订单
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to user_pages_path(current_user.id, qrcode: true) do %>
+                      <i class="fa fa-qrcode"></i>  打印二维码
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to new_user_page_path(current_user.id), class: "active" do %>
+                      <i class="fa fa-plus"></i>  添加产品
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to case_path do %>
+                      <i class="fa fa-list"></i>  案例中心
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+              <%= yield(:side_bar) %>
+              <form class="navbar-form" role="search" action="/search">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="搜索产品..." value="" />
+                  <input name="search" type="text" class="form-control" placeholder="搜索产品..." value="" />
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="fa fa-search"></span></button>
+                    <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
                   </span>
                 </div><!-- end input group -->
               </form><!-- end navbar-form -->
-              <% if @user %>
-                <ul class="nav navbar-nav filter-portfolio">
-                  <li class="title">产品系列</li>
-                  <% @user.pages.tag_counts.each do |tag| %>
-                     <li><%= link_to tag_path(@user, tag.name) do %>
-                         <i class="icon-tags"></i><%= tag.name %>
-                     <% end %><span>(<%= tag.count %>)</span> </li>
-                  <% end %>
-                </ul>
-              <% end %>
-              <% if user_signed_in? %>
-                <ul class="nav navbar-nav nav-social hidden-sm hidden-xs">
-                  <li class="title">管理</li>
-                  <li>
-                    <%= link_to new_user_page_path(current_user.id), class: "active" do %>
-                      <i class="fa fa-search"></i> + 添加产品
-                    <% end %>
-                  </li>
-                </ul>
-              <% end %>
             </div><!-- end navbar-collapse -->
           </div><!-- end navbar -->
         </div><!-- end col -->
@@ -136,5 +151,22 @@
       });
       
     </script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.dropdown-toggle').dropdown();
+        $('[data-toggle=tooltip]').tooltip();
+        //$('[data-toggle=popover]').popover({html:true});
+
+        $('#online-order').popover({
+            html:true,
+            placement:'bottom',
+            content:function(){
+              return $('#order-form').html();
+            }
+        });
+      });
+    </script>
+
   </body>
 </html>

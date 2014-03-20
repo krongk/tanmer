@@ -1,18 +1,16 @@
 <%= simple_form_for(@book) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.association :page %>
+  <div class="form-group">
+    <%= f.association :page, as: :hidden, input_html: { value: params[:book][:page_id]} %>
     <%= f.input :name %>
     <%= f.input :email %>
     <%= f.input :phone %>
     <%= f.input :address %>
     <%= f.input :message %>
-    <%= f.input :is_processed %>
-    <%= f.input :note %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, input_html: {class: 'btn btn-primary'} %>
   </div>
 <% end %>

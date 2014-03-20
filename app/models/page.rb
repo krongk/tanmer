@@ -1,7 +1,8 @@
 class Page < ActiveRecord::Base
   belongs_to :user
   acts_as_taggable
-  validates :title, :short_title, :content, presence: true
+  validates :title, :content, presence: true
+  before_save :create_unique_short_title
 
   #extract image url from content
   def image
@@ -25,4 +26,13 @@ class Page < ActiveRecord::Base
       all
     end
   end
+
+ 
+  private
+    def create_unique_short_title
+      begin
+        self.short_title = 'p' + SecureRandom.hex(5)
+      end while self.class.exists?(:short_title => short_title)
+    end
+
 end

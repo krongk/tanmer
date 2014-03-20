@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
+  #render 404 error
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end

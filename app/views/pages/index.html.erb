@@ -1,24 +1,22 @@
+<% content_for :side_bar do %>
+  <% if @user && params[:qrcode].nil? %>
+    <ul class="nav navbar-nav filter-portfolio">
+      <li class="title">产品系列</li>
+      <% @user.pages.tag_counts.each do |tag| %>
+         <li><%= link_to tag_path(@user, tag.name) do %>
+            <i class="fa fa-tags"></i>  <%= tag.name %>
+         <% end %><span>(<%= tag.count %>)</span> </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
 <div class="content">
   <div class="portfolio-wrapper">
-    <% @pages.each do |page| %>
-    <div class="card film art">
-      <%= link_to user_page_path(@user, page), class: 'thumb' do %>
-        <img src="<%= page.image %>" alt="<%= page.title %>" title="<%= page.title %>" />
-        <span class="overlay"><span class="fa fa-search"></span></span>
-      <% end %>
-      <div class="card-body">
-        <h2><%= link_to page.title, user_page_path(@user, page), target: '_blank' %></h2>
-        <p><%= page.description %></p>
-        <p><%= link_to '阅读更多', user_page_path(@user, page), target: '_blank' %></p>
-      </div><!-- end card-body -->
-      <div class="card-footer">
-        <ul class="list-inline filters">
-          <% page.tag_list.each do |tag| %> 
-            <%= link_to tag, tag_path(@user, tag) %>
-          <% end %>
-        </ul>
-      </div><!-- end card-footer -->
-    </div><!-- end card -->
+    <% if params[:qrcode] %>
+      <%= render partial: 'pages/list_qr' %>
+    <% else %>
+       <%= render partial: 'pages/list' %>
     <% end %>
   </div><!-- end portfolio-wrapper -->
   <div class="pagination-wrapper">

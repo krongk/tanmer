@@ -27,31 +27,7 @@ module ApplicationHelper
     html.html_safe
   end
 
-  def get_url(host, page)
-    return "#{host}/#{page.id}"
+  def get_url(page)
+    return "#{ENV["HOST_NAME"]}/#{page.user.id}/#{page.short_title}"
   end
-
-  def get_short_title(title)
-    return if title.blank?
-    st = Pinyin.t(title).gsub(/(-|\s+)/, '-').gsub(/[^\w-]/, '')
-    st = st.to_s.squeeze('-')[0..10].gsub(/\W+$/, '')
-    while Page.where(short_title: st).any?
-      st += ('a'..'z').to_a[rand(26)]
-    end
-    return st
-  end
-
-  #Tag 用以下的符号隔开都可以，就是不能用空格
-  def update_tag(page)
-    #remove all previows
-    page.tag_list.clear
-    #add new 
-    page.keywords.split(SPECIAL_SYMBO_REG).each do |tag|
-      next if SPECIAL_SYMBO_REG.match tag
-      page.tag_list.add(tag)
-      page.save!
-    end
-    return true
-  end
-
 end

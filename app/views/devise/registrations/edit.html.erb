@@ -1,5 +1,5 @@
 <div class="authform">
-  <h3>Edit <%= resource_name.to_s.humanize %></h3>
+  <h3>修改账户</h3>
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
     <%= devise_error_messages! %>
     <div class="form-group">
@@ -14,7 +14,7 @@
       <% end %>
     </div>
     <fieldset>
-      <p>Leave these fields blank if you don't want to change your password.</p>
+      <p>请输入新密码，如果不打算修改，则留空.</p>
       <div class="form-group">
         <%= f.label :password %>
         <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
@@ -25,17 +25,16 @@
       </div>
     </fieldset>
     <fieldset>
-      <p>You must enter your current password to make changes.</p>
       <div class="form-group">
         <%= f.label :current_password %>
         <%= f.password_field :current_password, class: 'form-control' %>
       </div>
     </fieldset>
-    <%= f.submit 'Update', :class => 'button right' %>
+    <%= f.submit '提 交', :class => 'button right' %>
   <% end %>
 </div>
 <div class="authform">
-<h3>Cancel Account</h3>
-<p>Unhappy? We'll be sad to see you go.</p>
-<%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right' %>
+<h3>注销账户</h3>
+<p>确定要注销吗? 注销账户将彻底删除你在本网站上的所有信息.</p>
+<%= button_to "确定注销", registration_path(resource_name), :data => { :confirm => "该操作无法撤销，你确定要注销吗?" }, :method => :delete, :class => 'button right' %>
 </div>

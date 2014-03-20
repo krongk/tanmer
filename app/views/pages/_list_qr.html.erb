@@ -1,0 +1,8 @@
+<% @pages.each do |page| %>
+  <div class="card film art">
+    <img src="<%= page.qrcode %>" alt="<%= get_url(page) %>" title="<%= page.title %>" />
+    <div class="card-body">
+      <p class="text-center"><%= page.title.to_s.truncate(20) %></p>
+    </div><!-- end card-body -->
+  </div><!-- end card -->
+<% end %>

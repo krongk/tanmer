@@ -25,7 +25,7 @@ class Keystore < ActiveRecord::Base
     new_value = nil
 
     Keystore.transaction do
-      ks = self.find_or_create_by_key(key)
+      ks = self.find_or_create_by(key: key)
       ks.value = ks.value.to_i + amount
       ks.save!
       new_value = self.value_for(key)

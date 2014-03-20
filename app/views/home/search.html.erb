@@ -1,0 +1,24 @@
+<% content_for :side_bar do %>
+  共查询到记录<%= @pages.size %>条...
+<% end %>
+
+<div class="content">
+  <div class="portfolio-wrapper">
+    <% @pages.each do |page| %>
+      <div class="card film art">
+        <%= link_to get_url(page), class: 'thumb' do %>
+          <img src="<%= page.image %>" alt="<%= page.title %>" title="<%= page.title %>" />
+          <span class="overlay"><span class="fa fa-search"></span></span>
+        <% end %>
+        <div class="card-body">
+          <h2><%= link_to page.title, get_url(page) %></h2>
+          <p><%= page.description %></p>
+          <p><%= link_to '阅读更多', get_url(page) %></p>
+        </div><!-- end card-body -->
+      </div><!-- end card -->
+    <% end %>
+  </div><!-- end portfolio-wrapper -->
+  <div class="pagination-wrapper">
+    <%= will_paginate @pages %>
+  </div>
+</div><!-- end content -->

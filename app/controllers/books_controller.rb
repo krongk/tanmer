@@ -1,10 +1,11 @@
 class BooksController < ApplicationController
+  before_filter :authenticate_user!, except: [:new, :create]
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @books = Book.joins(:page).where("pages.user_id = ?", current_user.id).page(params[:page])
   end
 
   # GET /books/1
@@ -28,7 +29,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to get_url(@book.page), notice: '产品预定成功, 我们会尽快与您联系.' }
         format.json { render action: 'show', status: :created, location: @book }
       else
         format.html { render action: 'new' }

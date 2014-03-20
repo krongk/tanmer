@@ -1,0 +1,22 @@
+# Add account credentials and API keys here.
+# See http://railsapps.github.io/rails-environment-variables.html
+# This file should be listed in .gitignore to keep your settings secret!
+# Each entry sets a local environment variable and overrides ENV variables in the Unix shell.
+# For example, setting:
+# GMAIL_USERNAME: Your_Gmail_Username
+# makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
+# Add application configuration variables here, as shown below.
+#
+
+#use on get_url and generate qrcode
+HOST_NAME: http://localhost:3000
+
+#email
+GMAIL_USERNAME: kenrome
+GMAIL_PASSWORD: www.inruby.com
+
+#admin
+ADMIN_NAME: master
+ADMIN_EMAIL: admin@rxy123.com
+ADMIN_PASSWORD: rxy123.com
+ROLES: [admin, user, VIP]

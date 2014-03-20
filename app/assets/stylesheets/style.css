@@ -35,7 +35,7 @@
   TYPOGRAPHY
 ****************************************************/
 body {
-  font-family: 'PT Sans', Helvetica, Arial, ans-serif;
+  font-family: '微软雅黑', 'Microsoft Yahei', Helvetica, Arial, ans-serif;
   background: url(/assets/bg.jpg) 0 0 repeat #efefef;
   color: #555;
 }
@@ -51,7 +51,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-family: 'Lato', '微软雅黑', 'Microsoft Yahei', Helvetica, Arial, sans-serif;
 }
 h1 {
   margin: 0 0 30px;

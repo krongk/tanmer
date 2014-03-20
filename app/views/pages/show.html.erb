@@ -1,3 +1,13 @@
+<% content_for :side_bar do %>
+  <ul class="nav navbar-nav">
+    <li class="title">产品二维码</li>
+    <li>
+      <img src="<%= @page.qrcode %>" alt="<%= get_url(@page) %>" title="<%= @page.title %>" />
+      <p class="text-center">扫描本产品二维码，在手机上查看~</p>
+    </li>
+  </ul>
+<% end %>
+
 <div class="content">
   <div class="page">
     <article>
@@ -5,11 +15,44 @@
         <h1> <%= @page.title %></h1>
         <p class="lead"><%= @page.description %></p>
       </div><!-- end page-header -->
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="list-unstyled post-meta">
+            <% unless @page.properties.blank? %>
+              <li><span class="fa fa-calendar"></span>型号： <%= @page.properties %> </li>
+            <% end %>
+            <% unless @page.amount.blank? %>
+              <li><span class="fa fa-calendar"></span>库存： <%= @page.amount %> </li>
+            <% end %>
+            <% unless @page.price.blank? %>
+              <li><span class="fa fa-calendar"></span>价格： <%= @page.price %> </li>
+            <% end %>
+            <li class="text-center"><a id="online-order" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="在线预定">在线预定</a></li>
+          </ul><!-- end post-meta -->
+        </div><!-- end col -->
+      </div>
+
       <%= raw @page.content %>
       <% if user_signed_in? && current_user.id == @page.user_id %>
+        <hr/>
         <%= link_to '修改', edit_user_page_path(current_user, @page), class: 'btn btn-primary btn-large' %> |
         <%= link_to '删除', [current_user, @page], method: :delete, data: { confirm: '删除以后无法恢复，确定要删除吗?' }, class: 'btn btn-grey btn-large' %>
       <% end %>
     </article>
   </div><!-- end page -->
 </div><!-- end content -->
+
+
+<div id="order-form">
+<%= simple_form_for(@book) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-group">
+    <%= f.association :page, as: :hidden, input_html: { value: @page.id} %>
+    <%= f.input :phone %>
+    <%= f.input :message %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, input_html: {class: 'btn btn-primary'} %>
+  </div>
+<% end %>
+</div>
