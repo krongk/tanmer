@@ -109,7 +109,7 @@ class PagesController < ApplicationController
     def generate_qrcode(page)
       url = get_url(page)
       return if url.blank?
-      qr = RQRCode::QRCode.new( url, :size => 4, :level => :h )
+      qr = RQRCode::QRCode.new( url, :size => 10, :level => :h )
       png = qr.to_img # returns an instance of ChunkyPNG
 
       qr_dir = File.join(Rails.root, 'public', 'qrcode', current_user.id.to_s)
