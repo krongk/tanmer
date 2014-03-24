@@ -29,7 +29,7 @@
                 <li class="active"><a href="/">关于</a></li>
                 <%= render 'layouts/navigation_links' %>
               </ul>
-              <ul class="nav navbar-nav nav-social hidden-sm hidden-xs">
+              <ul class="nav navbar-nav">
                 <% if user_signed_in? %>
                   <li class="title">管理</li>
                    <li>
@@ -160,7 +160,7 @@
 
         $('#online-order').popover({
             html:true,
-            placement:'bottom',
+            placement:'top',
             content:function(){
               return $('#order-form').html();
             }

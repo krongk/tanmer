@@ -9,7 +9,7 @@
 #
 
 #use on get_url and generate qrcode
-HOST_NAME: http://localhost:3000
+HOST_NAME: http://www.yufuwu.cn
 
 #email
 GMAIL_USERNAME: kenrome

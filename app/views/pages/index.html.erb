@@ -1,6 +1,6 @@
 <% content_for :side_bar do %>
   <% if @user && params[:qrcode].nil? %>
-    <ul class="nav navbar-nav filter-portfolio">
+    <ul class="nav navbar-nav filter-portfolio hidden-sm hidden-xs">
       <% @user.pages.tag_counts.each do |tag| %>
          <li><%= link_to tag_path(@user, tag.name), 'data-filter' => ".#{tag.name}" do %>
             <i class="fa fa-tags"></i>  <%= tag.name %>
@@ -12,6 +12,9 @@
 
 <div class="content">
   <div class="portfolio-wrapper">
+    <% if @pages.empty? %>
+      还没有任何产品.
+    <% end %>
     <% if params[:qrcode] %>
       <%= render partial: 'pages/list_qr' %>
     <% else %>
