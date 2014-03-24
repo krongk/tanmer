@@ -24,7 +24,7 @@ gem 'rolify'
 gem 'simple_form'
 gem 'acts-as-taggable-on'
 gem 'rqrcode_png'
-#gem 'therubyracer', :platform=>:ruby
+gem 'therubyracer', :platform=>:ruby
 
 group :development do
   gem 'better_errors'
