@@ -6,7 +6,9 @@ class Page < ActiveRecord::Base
 
   #extract image url from content
   def image
-    if self.content =~ /<img\s+.*src\s*=\s*"(.*\.(?:jpg|png|gif))"/i
+    if !self.extend_url.blank?
+      self.qrcode
+    elsif self.content =~ /<img\s+.*src\s*=\s*"(.*\.(?:jpg|png|gif))"/i
       $1
     else
       "/assets/avatar.jpg"
