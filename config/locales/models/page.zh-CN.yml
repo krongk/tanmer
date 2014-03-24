@@ -13,6 +13,7 @@ zh-CN:
         qrcode: 二维码
         short_title: 短地址
         properties: 型号
+        extend_url: 扩展链接地址
         amount: 数量
         price: 价格
         view_count: 浏览量

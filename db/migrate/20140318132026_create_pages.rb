@@ -9,6 +9,7 @@ class CreatePages < ActiveRecord::Migration
       t.string :qrcode
       t.string :short_title
       t.string :properties
+      t.string :extend_url
       t.integer :amount
       t.decimal :price
       t.integer :view_count, default: 0

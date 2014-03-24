@@ -29,6 +29,17 @@
 .purple {
   color: #7461aa;
 }
+.main-color{
+  color: #16a085;
+}
+.main-bg-color{
+  background-color: #16a085;
+}
+.qrcode-img{
+  -webkit-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  border-radius: 4px !important;
+}
 /***************************************************
   APPEARANCE VARIABLES border radius, box shadow, gradient
 ****************************************************//***************************************************
@@ -2323,9 +2334,9 @@ label.checkbox.inline {
   margin: 30px auto 0;
   width: 125px;
   height: 125px;
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 100%;
-  border-radius: 100%;
+  -webkit-border-radius: 30%;
+  -moz-border-radius: 30%;
+  border-radius: 30%;
 }
 /***************************************************
   DOCUMENTATION

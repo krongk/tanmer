@@ -19,7 +19,7 @@
               <% if u = (current_user || @user) %>
                 <a href="/<%= u.id %>" class="navbar-brand"><%= u.name %></a>
               <% else %>
-                <a href="/" class="navbar-brand">探码</a>
+                <a href="/" class="navbar-brand main-color"><i class="fa fa-qrcode fa-2x"></i></a>
               <% end %>
               <p class="brand-text">产品二维码展示系统</p>
             </div><!-- end navbar-header -->

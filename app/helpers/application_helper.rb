@@ -27,7 +27,8 @@ module ApplicationHelper
     html.html_safe
   end
 
+  #match '/p/u:user_id-p:id', to: "home#show", via: :get
   def get_url(page)
-    return "#{ENV["HOST_NAME"]}/#{page.user.id}/#{page.short_title}"
+    return "#{ENV["HOST_NAME"]}/p/u#{page.user.id}-p#{page.short_title}"
   end
 end

@@ -15,6 +15,7 @@ Tanmer::Application.routes.draw do
   match '/users/:user_id/tag/:tag(/page/:page)', to: "pages#tag", via: :get, as: 'tag'
 
   #short url
-  match '/:user_id', to: "pages#index", via: :get
-  match '/:user_id/:id', to: "pages#show", via: :get
+  match '/u/:user_id', to: "pages#index", via: :get
+  #match '/:user_id/:id', to: "pages#show", via: :get
+  match '/p/u:user_id-p:id', to: "home#show", via: :get
 end

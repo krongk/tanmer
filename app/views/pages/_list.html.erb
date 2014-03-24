@@ -7,13 +7,16 @@
     <div class="card-body">
       <h2><%= link_to page.title, get_url(page) %></h2>
       <p><%= page.description %></p>
-      <p><%= link_to '阅读更多', get_url(page) %></p>
     </div><!-- end card-body -->
     <div class="card-footer">
       <ul class="list-inline filters">
         <% page.tag_list.each do |tag| %> 
-          <%= link_to tag, tag_path(@user, tag) %>
+          <li><%= link_to tag, tag_path(@user, tag) %></li>
         <% end %>
+        <li class="pull-right">
+          <%= link_to '修改', edit_user_page_path(current_user, page) %> |
+          <%= link_to '删除', [current_user, page], method: :delete, data: { confirm: '删除以后无法恢复，确定要删除吗?' } %>
+        </li>
       </ul>
     </div><!-- end card-footer -->
   </div><!-- end card -->

@@ -7,22 +7,30 @@
     <%= f.input :keywords %>
     <%= f.input :description, :as => :text %>
     <%#= f.input :content %>
-    <%= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'custom', height: "600px"} } %>
+    <%= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'custom', height: "400px"} } %>
   </div>
   <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">
+          <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
             更多选项
+          </a>
+          <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed pull-right">
+            <高级选项>
           </a>
         </h4>
       </div>
-      <div id="collapseTwo" class="panel-collapse collapse">
+      <div id="collapseOne" class="panel-collapse collapse">
         <div class="panel-body">
           <%= f.input :properties %>
           <%= f.input :amount %>
           <%= f.input :price %>
+        </div>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= f.input :extend_url, placeholder: 'http://www.example.com/site.html', hint: '若该页面为一个扩展网页，或外部链接，请在这里输入链接路径，程序会自动跳转到该链接。' %>
         </div>
       </div>
     </div>
@@ -30,8 +38,7 @@
 
 
   <div class="form-actions">
-    <%= f.button :submit, class: "btn btn-large btn-primary" %>
-    <a href="/" class="btn btn-grey">取 消</a>
+    <%= f.button :submit, class: "btn btn-large btn-primary btn-block" %>
   </div>
 <% end %>
 
