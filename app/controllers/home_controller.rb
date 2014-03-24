@@ -7,15 +7,25 @@ class HomeController < ApplicationController
   end
 
   def show
+    #set user
+    @user = User.find_by(id: params[:user_id])
+    @user ||= current_user
+
+    #set tags
+    @tags = @user.pages.tag_counts_on(:tags).page(params[:page])
+
+    #set page
     if params[:id] =~ /^\d+$/i
       @page = Page.find_by(id: params[:id])
     end
     @page ||= Page.find_by(short_title: params[:id])
     not_found if params[:id] && @page.nil?
-
+    #increment view count
     Keystore.increment_value_for("page:#{@page.id}:view_count")
-    
+    #book new
     @book = Book.new
+    
+    #extend URL redirect
     respond_to do |format|
       unless @page.extend_url.blank?
        
