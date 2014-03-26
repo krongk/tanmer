@@ -1,44 +1,62 @@
-<%= simple_form_for([current_user, @page]) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="controls">
-    <%#= f.association :user %>
-    <%= f.input :title %>
-    <%= f.input :keywords %>
-    <%= f.input :description, :as => :text %>
-    <%#= f.input :content %>
-    <%= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'custom', height: "400px"} } %>
-  </div>
-  <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
-            更多选项
-          </a>
-          <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed pull-right">
-            <高级选项>
-          </a>
-        </h4>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-md-6">
+    <%= simple_form_for([current_user, @page]) do |f| %>
+      <%= f.error_notification %>
+      <div class="controls">
+        <%#= f.association :user %>
+        <%= f.input :title %>
+        <%= f.input :keywords %>
+        <%= f.input :description, :as => :text %>
+        <%#= f.input :content %>
+        <%= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'custom', height: "400px"} } %>
       </div>
-      <div id="collapseOne" class="panel-collapse collapse">
-        <div class="panel-body">
-          <%= f.input :properties %>
-          <%= f.input :amount %>
-          <%= f.input :price %>
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
+                更多选项
+              </a>
+              <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed pull-right">
+                <高级选项>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+              <%= f.input :properties %>
+              <%= f.input :amount %>
+              <%= f.input :price %>
+            </div>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+              <%= f.input :extend_url, placeholder: 'http://www.example.com/site.html', hint: '若该页面为一个扩展网页，或外部链接，请在这里输入链接路径，程序会自动跳转到该链接。' %>
+            </div>
+          </div>
         </div>
       </div>
-      <div id="collapseTwo" class="panel-collapse collapse">
-        <div class="panel-body">
-          <%= f.input :extend_url, placeholder: 'http://www.example.com/site.html', hint: '若该页面为一个扩展网页，或外部链接，请在这里输入链接路径，程序会自动跳转到该链接。' %>
-        </div>
+      <div class="form-actions">
+        <%= f.button :submit, class: "btn btn-large btn-primary btn-block" %>
       </div>
-    </div>
+    <% end %>
   </div>
+  <div class="col-sm-4 col-md-6">
+    <h2>帮助说明</h2>
+    <h4>添加<在线预定>链接</h4>
+    <pre>
+&lt;a id="online-order" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="在线预定"&gt;在线预定&lt;/a&gt;
+预览效果：
+<a id="online-order" href="#none" class="btn btn-default btn-lg" data-html="true" data-toggle="popover" title="" data-original-title="在线预定">在线预定</a>
+    </pre>
+    <h4>添加<有奖转发>链接</h4>
+    <pre>
+&lt;a id="online-rate" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="有奖转发"&gt;有奖转发&lt;/a&gt;
+预览效果：
+<a id="online-rate" href="#none" class="btn btn-default btn-lg" data-html="true" data-toggle="popover" title="" data-original-title="有奖转发">有奖转发</a>
+    </pre>
 
-
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn btn-large btn-primary btn-block" %>
   </div>
-<% end %>
+</div>
 
+<%= render partial: 'order_rate_form' %>

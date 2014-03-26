@@ -1,3 +1,7 @@
+<% title @page.title %>
+<% meta_keywords  [@page.title, '探码'].join('|')%>
+<% meta_description @page.description %>
+
 <% content_for :side_bar do %>
   <ul class="nav navbar-nav hidden-sm hidden-xs">
     <li class="title">产品二维码</li>
@@ -27,8 +31,8 @@
             <% unless @page.price.blank? %>
               <li><span class="fa fa-cny"></span>价格： <%= @page.price %> </li>
             <% end %>
-            <li class="text-center"><a id="online-order" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="在线预定">在线预定</a></li>
-            <li class="text-center"><a id="online-rate" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="有奖转发">有奖转发</a></li>
+            <!-- <li class="text-center"><a id="online-order" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="在线预定">在线预定</a></li>
+            <li class="text-center"><a id="online-rate" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="有奖转发">有奖转发</a></li> -->
           </ul><!-- end post-meta -->
         </div><!-- end col -->
       </div>
@@ -43,33 +47,4 @@
   </div><!-- end page -->
 </div><!-- end content -->
 
-
-<div id="order-form">
-<%= simple_form_for(@book) do |f| %>
-  <%= f.error_notification %>
-  <div class="form-group">
-    <%= f.association :page, as: :hidden, input_html: { value: @page.id} %>
-    <%= f.input :phone %>
-    <%= f.input :message %>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit, input_html: {class: 'btn btn-primary'} %>
-  </div>
-<% end %>
-</div>
-
-<div id="rate-form">
-  <%= simple_form_for(@page_rate) do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs">
-      <%= f.input :page_id,  as: :hidden, input_html: {value: @page.id} %>
-      <%= f.input :name %>
-      <%= f.input :phone %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, '获取链接'%>
-    </div>
-  <% end %>
-</div>
+<%= render partial: 'pages/order_rate_form' %>

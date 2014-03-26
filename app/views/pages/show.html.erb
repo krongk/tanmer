@@ -1,3 +1,7 @@
+<% title @page.title %>
+<% meta_keywords  [@page.title, '探码'].join('|')%>
+<% meta_description @page.description %>
+
 <% content_for :side_bar do %>
   <ul class="nav navbar-nav hidden-sm hidden-xs">
     <li class="title">产品二维码</li>
@@ -34,8 +38,11 @@
               </ul><!-- end post-meta -->
             </div><!-- end col -->
           </div>
-
-          <%= raw @page.content %>
+          <% if @page.extend_url.blank? %>
+            <%= raw @page.content %>
+          <% else %>
+            
+          <% end %>
           
         </article>
       </div><!-- end page -->
@@ -81,32 +88,4 @@
   </div>
 </div>
 
-<div id="order-form">
-<%= simple_form_for(@book) do |f| %>
-  <%= f.error_notification %>
-  <div class="form-group">
-    <%= f.association :page, as: :hidden, input_html: { value: @page.id} %>
-    <%= f.input :phone %>
-    <%= f.input :message %>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit, input_html: {class: 'btn btn-primary'} %>
-  </div>
-<% end %>
-</div>
-
-<div id="rate-form">
-  <%= simple_form_for(@page_rate) do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs">
-      <%= f.input :page_id,  as: :hidden, input_html: {value: @page.id} %>
-      <%= f.input :name %>
-      <%= f.input :phone %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, '获取链接' %>
-    </div>
-  <% end %>
-</div>
+<%= render partial: 'pages/order_rate_form' %>

@@ -19,6 +19,8 @@ class PagesController < ApplicationController
   # GET /pages/new
   def new
     @page = Page.new
+    @book = Book.new
+    @page_rate = PageRate.new
   end
 
   # GET /pages/1/edit
