@@ -20,9 +20,6 @@ class HomeController < ApplicationController
     if params[:pr_id]
       PageRate.increment_rate_count(params[:pr_id])
     end
-    #book new
-    @book = Book.new
-    @page_rate = PageRate.new
     
     #extend URL redirect
     respond_to do |format|

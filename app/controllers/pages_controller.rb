@@ -12,15 +12,11 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show #just for admin view
-    @book = Book.new
-    @page_rate = PageRate.new
   end
 
   # GET /pages/new
   def new
     @page = Page.new
-    @book = Book.new
-    @page_rate = PageRate.new
   end
 
   # GET /pages/1/edit

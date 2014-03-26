@@ -1,3 +1,5 @@
+<% @book ||= Book.new %>
+<% @page_rate ||= PageRate.new %>
 
 <div id="order-form">
 <%= simple_form_for(@book) do |f| %>
