@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319080920) do
+ActiveRecord::Schema.define(version: 20140326050844) do
 
   create_table "books", force: true do |t|
     t.integer  "page_id",                    null: false
@@ -30,30 +30,70 @@ ActiveRecord::Schema.define(version: 20140319080920) do
   add_index "books", ["page_id"], name: "index_books_on_page_id", using: :btree
 
   create_table "keystores", force: true do |t|
-    t.integer  "user_id",    null: false
     t.string   "key",        null: false
     t.string   "value",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "keystores", ["user_id", "key"], name: "index_keystores_on_user_id_and_key", unique: true, using: :btree
-  add_index "keystores", ["user_id"], name: "index_keystores_on_user_id", using: :btree
+  add_index "keystores", ["key"], name: "index_keystores_on_user_id_and_key", unique: true, using: :btree
+
+  create_table "members", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "phone",                  default: "", null: false
+    t.string   "name"
+    t.string   "address"
+    t.string   "message"
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "members", ["email"], name: "index_members_on_email", unique: true, using: :btree
+  add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true, using: :btree
+
+  create_table "page_contents", force: true do |t|
+    t.integer "page_id"
+    t.text    "content"
+  end
+
+  add_index "page_contents", ["page_id"], name: "index_page_contents_on_page_id", using: :btree
+
+  create_table "page_rates", force: true do |t|
+    t.integer  "page_id"
+    t.integer  "member_id"
+    t.integer  "rate_count"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "page_rates", ["member_id"], name: "index_page_rates_on_member_id", using: :btree
+  add_index "page_rates", ["page_id"], name: "index_page_rates_on_page_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.integer  "user_id",                                                                null: false
-    t.string   "title",                                                                  null: false
+    t.string   "title",        limit: 128,                                               null: false
     t.string   "keywords"
-    t.string   "description"
+    t.string   "description",  limit: 512
     t.text     "content",      limit: 2147483647
-    t.string   "qrcode"
-    t.string   "short_title"
-    t.string   "properties"
+    t.string   "qrcode",       limit: 128
+    t.string   "short_title",  limit: 32
+    t.string   "properties",   limit: 64
+    t.string   "extend_url",   limit: 128
     t.integer  "amount"
     t.decimal  "price",                           precision: 10, scale: 0
     t.integer  "view_count",                                               default: 0
     t.integer  "fav_count",                                                default: 0
-    t.string   "is_processed",                                             default: "n", null: false
+    t.string   "is_processed", limit: 50,                                  default: "n", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

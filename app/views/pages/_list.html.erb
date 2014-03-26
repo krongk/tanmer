@@ -5,7 +5,11 @@
       <span class="overlay"><span class="fa fa-search"></span></span>
     <% end %>
     <div class="card-body">
-      <h2><%= link_to page.title, get_url(page) %></h2>
+      <% if user_signed_in? && current_user.id == page.user_id %>
+        <h2><%= link_to page.title, user_page_path(current_user, page) %></h2>
+      <% else %>
+        <h2><%= link_to page.title, get_url(page) %></h2>
+      <% end %>
       <p><%= page.description %></p>
     </div><!-- end card-body -->
     <div class="card-footer">

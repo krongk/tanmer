@@ -28,6 +28,7 @@
               <li><span class="fa fa-cny"></span>价格： <%= @page.price %> </li>
             <% end %>
             <li class="text-center"><a id="online-order" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="在线预定">在线预定</a></li>
+            <li class="text-center"><a id="online-rate" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="有奖转发">有奖转发</a></li>
           </ul><!-- end post-meta -->
         </div><!-- end col -->
       </div>
@@ -35,7 +36,7 @@
       <%= raw @page.content %>
       <% if user_signed_in? && current_user.id == @page.user_id %>
         <hr/>
-        <%= link_to '修改', edit_user_page_path(current_user, @page), class: 'btn btn-primary btn-large' %> |
+        <%= link_to '修改', edit_user_page_path(current_user, @page), class: 'btn btn-primary btn-large' %>  &nbsp;&nbsp;
         <%= link_to '删除', [current_user, @page], method: :delete, data: { confirm: '删除以后无法恢复，确定要删除吗?' }, class: 'btn btn-grey btn-large' %>
       <% end %>
     </article>
@@ -55,4 +56,20 @@
     <%= f.button :submit, input_html: {class: 'btn btn-primary'} %>
   </div>
 <% end %>
+</div>
+
+<div id="rate-form">
+  <%= simple_form_for(@page_rate) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :page_id,  as: :hidden, input_html: {value: @page.id} %>
+      <%= f.input :name %>
+      <%= f.input :phone %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, '获取链接'%>
+    </div>
+  <% end %>
 </div>

@@ -11,10 +11,9 @@ class PagesController < ApplicationController
 
   # GET /pages/1
   # GET /pages/1.json
-  def show
-    Keystore.increment_value_for("page:#{@page.id}:view_count")
-    
+  def show #just for admin view
     @book = Book.new
+    @page_rate = PageRate.new
   end
 
   # GET /pages/new
@@ -33,7 +32,7 @@ class PagesController < ApplicationController
     @page.user_id = current_user.id
 
     respond_to do |format|
-      if @page.save
+      if @page.save && PageContent.create!(page_id: @page.reload.id, content: page_params[:content])
         update_tag(@page)
         generate_qrcode(@page)
         Keystore.increment_value_for("user:#{@page.user_id}:page_count")
@@ -77,6 +76,7 @@ class PagesController < ApplicationController
   end
 
   def search
+    #page search
     @pages = @user.pages.search(params[:search]).order("updated_at desc").page(params[:page])
   end
 

@@ -1,0 +1,11 @@
+
+<h2><%= @member.name %>的文章转发统计</h2>
+<div class="list-group">
+  <% @member.page_rates.order("rate_count DESC").each do |page_rate| %>
+    <li class="list-group-item">
+      <%= link_to page_rate.page.title, get_url(page_rate.page, page_rate.id) %>
+       <span class="badge badge-important"><%= page_rate.rate_count %></span>
+    </li>
+  <% end %>
+</div>
+

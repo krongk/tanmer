@@ -1,4 +1,12 @@
 Tanmer::Application.routes.draw do
+  get "members/index"
+  get "members/show"
+  get "members/edit"
+  get "members/update"
+  get "members/destroy"
+  resources :page_rates
+
+  devise_for :members
   resources :books
   resources :keystores
 
@@ -6,6 +14,7 @@ Tanmer::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users do
     resources :pages
+    resources :members
   end
 
   #match home search/case special path
@@ -17,5 +26,6 @@ Tanmer::Application.routes.draw do
   #short url
   match '/u/:user_id', to: "pages#index", via: :get
   #match '/:user_id/:id', to: "pages#show", via: :get
+
   match '/p/u:user_id-p:id', to: "home#show", via: :get
 end

@@ -28,7 +28,8 @@ module ApplicationHelper
   end
 
   #match '/p/u:user_id-p:id', to: "home#show", via: :get
-  def get_url(page)
-    return "#{ENV["HOST_NAME"]}/p/u#{page.user.id}-p#{page.short_title}"
+  #pr_id : page_rate id 
+  def get_url(page, pr_id = 0)
+    return "#{ENV["HOST_NAME"]}/p/u#{page.user.id}-p#{page.short_title}#{pr_id == 0 ? '' : '?pr_id=' + pr_id.to_s}"
   end
 end

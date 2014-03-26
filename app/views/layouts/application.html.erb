@@ -43,6 +43,11 @@
                     <% end %>
                   </li>
                   <li>
+                    <%= link_to user_members_path(current_user) do %>
+                      <i class="fa fa-users"></i>  查看会员
+                    <% end %>
+                  </li>
+                  <li>
                     <%= link_to user_pages_path(current_user.id, qrcode: true) do %>
                       <i class="fa fa-qrcode"></i>  打印二维码
                     <% end %>
@@ -63,7 +68,7 @@
               <%= yield(:side_bar) %>
               <form class="navbar-form" role="search" action="/search">
                 <div class="input-group">
-                  <input name="search" type="text" class="form-control" placeholder="搜索产品..." value="" />
+                  <input name="search" type="text" class="form-control" placeholder="标题/产品/电话号码..." value="" />
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
                   </span>
@@ -165,6 +170,14 @@
               return $('#order-form').html();
             }
         });
+        $('#online-rate').popover({
+            html:true,
+            placement:'top',
+            content:function(){
+              return $('#rate-form').html();
+            }
+        });
+
       });
     </script>
 

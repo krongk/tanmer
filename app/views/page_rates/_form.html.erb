@@ -1,0 +1,13 @@
+<%= simple_form_for(@page_rate) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :page %>
+    <%= f.association :member %>
+    <%= f.input :rate_count %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

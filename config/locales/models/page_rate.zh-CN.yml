@@ -1,0 +1,16 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      page_rate: 页面访问量
+    attributes:
+      page_rate:
+        page: 页面
+        rate_count: 访问量
+        member: 会员
+        phone: 手机号码
+        name: 姓名
+    errors:
+      page_rate: 
+  helpers:
+    page_rate: 

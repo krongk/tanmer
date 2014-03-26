@@ -1,0 +1,31 @@
+<h1>Listing page_rates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Page</th>
+      <th>Member</th>
+      <th>Rate count</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @page_rates.each do |page_rate| %>
+      <tr>
+        <td><%= page_rate.page %></td>
+        <td><%= page_rate.member %></td>
+        <td><%= page_rate.rate_count %></td>
+        <td><%= link_to 'Show', page_rate %></td>
+        <td><%= link_to 'Edit', edit_page_rate_path(page_rate) %></td>
+        <td><%= link_to 'Destroy', page_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Page rate', new_page_rate_path %>

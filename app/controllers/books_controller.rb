@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.joins(:page).where("pages.user_id = ?", current_user.id).page(params[:page])
+    @books = Book.joins(:page).where("pages.user_id = ?", current_user.id).order("created_at DESC").page(params[:page])
   end
 
   # GET /books/1

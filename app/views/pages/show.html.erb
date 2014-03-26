@@ -8,40 +8,78 @@
   </ul>
 <% end %>
 
-<div class="content">
-  <div class="page">
-    <article>
-      <div class="page-header">
-        <h1> <%= @page.title %></h1>
-        <p class="lead"><%= @page.description %></p>
-      </div><!-- end page-header -->
-      <div class="row">
-        <div class="col-md-12">
-          <ul class="list-unstyled post-meta">
-            <% unless @page.properties.blank? %>
-              <li><span class="fa fa-th"></span>型号： <%= @page.properties %> </li>
-            <% end %>
-            <% unless @page.amount.blank? %>
-              <li><span class="fa fa-sort-amount-asc"></span>库存： <%= @page.amount %> </li>
-            <% end %>
-            <% unless @page.price.blank? %>
-              <li><span class="fa fa-cny"></span>价格： <%= @page.price %> </li>
-            <% end %>
-            <li class="text-center"><a id="online-order" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="在线预定">在线预定</a></li>
-          </ul><!-- end post-meta -->
-        </div><!-- end col -->
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-9">
+    <div class="content">
+      <div class="page">
+        <article>
+          <div class="page-header">
+            <h1> <%= @page.title %></h1>
+            <p class="lead"><%= @page.description %></p>
+          </div><!-- end page-header -->
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="list-unstyled post-meta">
+                <% unless @page.properties.blank? %>
+                  <li><span class="fa fa-th"></span>型号： <%= @page.properties %> </li>
+                <% end %>
+                <% unless @page.amount.blank? %>
+                  <li><span class="fa fa-sort-amount-asc"></span>库存： <%= @page.amount %> </li>
+                <% end %>
+                <% unless @page.price.blank? %>
+                  <li><span class="fa fa-cny"></span>价格： <%= @page.price %> </li>
+                <% end %>
+                <li><a id="online-order" href="#none" class="btn btn-default btn-lg" data-html="true" data-toggle="popover" title="" data-original-title="在线预定">在线预定</a> &nbsp;&nbsp;&nbsp;&nbsp; <a id="online-rate" href="#none" class="btn btn-default btn-lg" data-html="true" data-toggle="popover" title="" data-original-title="有奖转发">有奖转发</a></li>
+
+              </ul><!-- end post-meta -->
+            </div><!-- end col -->
+          </div>
+
+          <%= raw @page.content %>
+          
+        </article>
+      </div><!-- end page -->
+    </div><!-- end content -->
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <div class="content">
+      <div class="page">
+        <% if user_signed_in? && current_user.id == @page.user_id %>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">页面管理</h3>
+          </div>
+          <div class="panel-body">
+            <%= link_to '修改', edit_user_page_path(current_user, @page), class: 'btn btn-primary btn-large' %> &nbsp;&nbsp;
+            <%= link_to '删除', [current_user, @page], method: :delete, data: { confirm: '删除以后无法恢复，确定要删除吗?' }, class: 'btn btn-grey btn-large' %>
+          </div>
+        </div>
+        <% end %>
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">总访问量</h3>
+          </div>
+          <div class="panel-body">
+            <%= Keystore.value_for("page:#{@page.id}:view_count")%>
+          </div>
+        </div>
+
+        <ul class="list-group">
+          <li class="list-group-item active">
+            会员页面转发统计
+          </li>
+          <% @page.page_rates.order("rate_count desc").each do |pr| %>
+            <li class="list-group-item">
+              <b><%= pr.member.phone %>(<%= pr.member.name %>)</b>: 
+              <span class="badge badge-important"><%= pr.rate_count %></span>
+            </li>
+          <% end %>
+        </div>
       </div>
-
-      <%= raw @page.content %>
-      <% if user_signed_in? && current_user.id == @page.user_id %>
-        <hr/>
-        <%= link_to '修改', edit_user_page_path(current_user, @page), class: 'btn btn-primary btn-large' %> |
-        <%= link_to '删除', [current_user, @page], method: :delete, data: { confirm: '删除以后无法恢复，确定要删除吗?' }, class: 'btn btn-grey btn-large' %>
-      <% end %>
-    </article>
-  </div><!-- end page -->
-</div><!-- end content -->
-
+    </div>
+  </div>
+</div>
 
 <div id="order-form">
 <%= simple_form_for(@book) do |f| %>
@@ -55,4 +93,20 @@
     <%= f.button :submit, input_html: {class: 'btn btn-primary'} %>
   </div>
 <% end %>
+</div>
+
+<div id="rate-form">
+  <%= simple_form_for(@page_rate) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :page_id,  as: :hidden, input_html: {value: @page.id} %>
+      <%= f.input :name %>
+      <%= f.input :phone %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, '获取链接' %>
+    </div>
+  <% end %>
 </div>

@@ -2572,7 +2572,16 @@ footer p {
     margin: -20px -20px 30px;
   }
 }
+/*sdf*/
 @media screen and (max-width: 480px) {
+  /*xj: hidden navbar on mobile*/
+  /*.col-md-3 {
+    display: none;
+  }*/
+  .col-md-9 {
+    padding: 0px;
+  }
+
   .navbar {
     padding: 10px 0 0;
   }
@@ -2596,6 +2605,18 @@ footer p {
   }
   .navbar .navbar-form .form-control {
     font-size: 15px;
+  }
+
+  .content .page-header{
+    padding: 15px 0px;
+  }
+  .content .page-header h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+  .content .page article {
+    margin: 0px;
+    padding: 0px 0px 0px;
   }
   .content {
     padding-top: 10px;
@@ -2640,5 +2661,9 @@ footer p {
   .content .media-list li a.pull-left,
   .content .media-list li a.pull-right {
     display: none;
+  }
+  .content .btn-block{
+    width: 90%;
+    margin: 0 auto;
   }
 }

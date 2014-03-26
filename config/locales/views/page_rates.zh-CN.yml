@@ -1,0 +1,18 @@
+---
+zh-CN:
+  page_rates:
+    index:
+      title: Page rates
+    show:
+      title: Page rate
+    edit:
+      title: Editing Page rate
+    new:
+      title: New Page rate
+    create:
+      notice: '分享链接创建成功.'
+    update:
+      notice: '%{resource_name} was successfully updated.'
+    destroy:
+      notice: '%{resource_name} was successfully deleted.'
+      alert: '%{resource_name} could not be deleted.'

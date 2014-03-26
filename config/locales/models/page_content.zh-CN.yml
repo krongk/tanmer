@@ -1,0 +1,13 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      page_content: 页面内容
+    attributes:
+      page_content:
+        page: 页面
+        content: 内容
+    errors:
+      page_content: 
+  helpers:
+    page_content: 

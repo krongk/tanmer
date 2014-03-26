@@ -1,0 +1,20 @@
+---
+en:
+  page_rates:
+    index:
+      title: Page rates
+    show:
+      title: Page rate
+    edit:
+      title: Editing Page rate
+    new:
+      title: New Page rate
+  flash:
+    page_rates:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

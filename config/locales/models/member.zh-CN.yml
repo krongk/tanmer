@@ -1,0 +1,18 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      member: 会员
+    attributes:
+      member:
+        name: 姓名
+        email: 电话号码
+        address: 地址
+        password: 密码
+        current_password: 当前密码
+        password_confirmation: 密码确认
+        remember_me: 记住登录状态
+    errors:
+      channel: 
+  helpers:
+    channel: 
