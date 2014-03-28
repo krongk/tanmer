@@ -6,9 +6,10 @@ zh-CN:
     attributes:
       book:
         page: 产品
+        member: 会员
+        phone: 手机号码
         name: 姓名
         email: 电子邮件
-        phone: 电话号码
         address: 地址
         message: 留言
         is_processed: 是否处理

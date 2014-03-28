@@ -2,10 +2,8 @@ class CreateBooks < ActiveRecord::Migration
   def change
     create_table :books do |t|
       t.references :page, index: true
-      t.string :name
-      t.string :email
-      t.string :phone
-      t.string :address
+      t.references :member, index: true
+      
       t.string :message
       t.string :is_processed, default: 'n'
       t.string :note

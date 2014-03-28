@@ -3,7 +3,7 @@
     <article>
       <h2>你的分享链接为：</h2>
       <div class="well">
-        <a href="#"><%= get_url(@page,  @page_rate.id) %></a>
+        <b><%=link_to get_url(@page,  @page_rate.id),  get_url(@page,  @page_rate.id) %></b>
       </div>
       请将上面的分享链接复制给你的朋友！
       <%= render partial: 'custom_baidu_share', locals: {page: @page, page_rate: @page_rate} %>
@@ -11,8 +11,8 @@
       <div class="well">
        <%= image_tag @pr_qrcode_path %>
       </div>
-      想要查看被分享的次数，请在左边的搜索框输入你的<b>手机号码</b>进行查询。
-      <p>&lt;&lt;返回: &nbsp; <%=link_to @page.title, get_url(@page, @page_rate.id) %></p>
+      想要查看被分享的次数，请在左边的搜索框输入你的<b>手机号码</b>进行查询。<br/><br/><br/>
+      <p>返回: &nbsp; <%=link_to @page.title, get_url(@page, @page_rate.id) %></p>
     </article>
   </div>
 </div>

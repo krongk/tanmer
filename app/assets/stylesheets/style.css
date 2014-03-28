@@ -2578,8 +2578,9 @@ footer p {
   /*.col-md-3 {
     display: none;
   }*/
+  
   .col-md-9 {
-    padding: 10px;
+    padding: 10px 0px;
   }
 
   .navbar {
@@ -2611,8 +2612,8 @@ footer p {
     padding: 15px 0px;
   }
   .content .page-header h1 {
-    font-size: 24px;
-    text-align: center;
+    font-size: 26px;
+    padding: 0px 5px;
   }
   .content .page article {
     margin: 0px;
