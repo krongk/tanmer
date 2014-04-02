@@ -23,12 +23,15 @@ class HomeController < ApplicationController
     Page.increment_rate_count('pv', @page.id)
     if IpAddress.new_ip?(request.remote_ip, @page.id)
       Page.increment_rate_count('ip', @page.id)
-    end
-    #increment rate count
-    if params[:pr_id]
-      PageRate.increment_rate_count(params[:pr_id])
+      if params[:pr_id]
+        PageRate.increment_rate_count('ip', params[:pr_id])
+      end
     end
     
+    if params[:pr_id]
+      PageRate.increment_rate_count('pv', params[:pr_id])
+    end
+
     #extend URL redirect
     respond_to do |format|
       unless @page.extend_url.blank?
