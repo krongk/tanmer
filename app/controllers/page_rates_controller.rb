@@ -33,7 +33,8 @@ class PageRatesController < ApplicationController
     unless @page_rate = PageRate.find_by(page_id: page.id, member_id: member.id)
       @page_rate = PageRate.new(page_rate_params)
       @page_rate.member_id = member.id
-      @page_rate.rate_count = 1
+      @page_rate.ip_count = 1
+      @page_rate.pv_count = 1
     end
 
     respond_to do |format|
