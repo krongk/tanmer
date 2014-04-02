@@ -1,0 +1,14 @@
+---
+en:
+  active_record:
+    models:
+      ip_address: Ip address
+    attributes:
+      ip_address:
+        page: Page
+        ip: Ip
+        last_visited: Last visited
+    errors:
+      ip_address: 
+  helpers:
+    ip_address: 

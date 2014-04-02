@@ -16,7 +16,8 @@ zh-CN:
         extend_url: 扩展链接地址
         amount: 数量
         price: 价格
-        view_count: 浏览量
+        ip_count: IP访问量
+        pv_count: 页面浏览量
         fav_count: 收藏量
         is_processed: 是否处理
     errors:

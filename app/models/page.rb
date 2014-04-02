@@ -43,7 +43,33 @@ class Page < ActiveRecord::Base
       all
     end
   end
+  
+  #喜欢/IP/PV数据 typo = [fav ip pv]
+  def self.increment_rate_count(typo, page_id, amount = 1)
+    self.incremented_rate_count(typo, page_id)
+  end
 
+  def self.decrement_rate_count(typo, page_id, amount = -1)
+    self.incremented_rate_count(typo, page_id)
+  end
+
+  def self.incremented_rate_count(typo, page_id, amount = 1)
+    Page.transaction do
+      ks = self.find_by(id: page_id)
+      return if ks.nil?
+      case typo
+      when 'fav'
+        ks.fav_count = ks.fav_count.to_i + amount
+      when 'ip'
+        ks.ip_count = ks.ip_count.to_i + amount
+      when 'pv'
+        ks.pv_count = ks.pv_count.to_i + amount
+      else
+        raise "incorrect typo, typo should has value of [fav ip pv]"
+      end
+      ks.save!
+    end
+  end
  
   private
     def create_unique_short_title

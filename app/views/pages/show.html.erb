@@ -76,10 +76,11 @@
           <li class="list-group-item active">
             会员页面转发统计
           </li>
-          <% @page.page_rates.order("rate_count desc").each do |pr| %>
+          <% @page.page_rates.order("ip_count desc").each do |pr| %>
             <li class="list-group-item">
               <b><%= pr.member.phone %>(<%= pr.member.name %>)</b>: 
-              <span class="badge badge-important"><%= pr.rate_count %></span>
+              <span class="badge badge-important"><%= pr.ip_count %></span>
+              <span class="badge badge-important"><%= pr.pv_count %></span>
             </li>
           <% end %>
         </div>
