@@ -41,7 +41,7 @@
           <% if @page.extend_url.blank? %>
             <%= raw @page.content %>
           <% else %>
-            
+            扩展链接： <%= link_to get_url(@page), get_url(@page) %>
           <% end %>
           
         </article>

@@ -1,4 +1,4 @@
-<% title '探码' %>
+<% title Keystore.value_for("site_title") %>
 
 <div class="content">
   <div class="page">
@@ -6,13 +6,13 @@
       <div class="page-header page-header-resume">
 
         <%= image_tag asset_path('qrcode.png') %>
-        <h1 class="main-color">产品二维码展示系统</h1>
+        <h1 class="main-color"><%= Keystore.value_for("site_title") %></h1>
         <p class="lead">商家开展产品二维码营销的最便捷手段.</p>
       </div><!-- end page-header -->
       <div class="row">
         <div class="col-md-6">
           <ul class="fa-ul">
-            <li><i class="fa-li fa fa-envelope"></i> <a href="mailto:sw@rxy123.com">sw@rxy123.com</a></li>
+            <li><i class="fa-li fa fa-keystore.value_for("site_title")lope"></i> <a href="mailto:sw@rxy123.com">sw@rxy123.com</a></li>
             <li><i class="fa-li fa fa-phone"></i> 028-83388967</li>
             <li><i class="fa-li fa fa-mobile-phone"></i> 18180629873</li>
           </ul>
@@ -26,7 +26,7 @@
         </div><!-- end col-md-6 -->
       </div><!-- end row -->
       <hr class="margin-top-10" />
-      <h4>为什么选择产品二维码展示系统？</h4>
+      <h4>为什么选择<%= Keystore.value_for("site_title") %>？</h4>
       <dl>
         <dt><i class="fa fa-rub"></i> 不用建站，不用购买服务器 --- 产品就在云端！</dt>
         <dd>若企业按照传统方式开展二维码营销，则必须要搭建一个企业站点，购买服务器并保障服务的正常运行，这个过程费钱费力。而我们的产品二维码系统完全基于云计算架构，空间内存无限扩展，保证你的产品24小时在云端。</dd>
@@ -40,6 +40,28 @@
       <ul class="list-unstyled post-meta">
         <li class="text-center"><a id="online-order" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="联系我们">联系我们，马上开启二维码营销</a></li>
       </ul>
+      <h3>应用场景</h3>
+      <table class="table table-bordered table-hover">
+        <tbody>
+          <tr>
+            <td><div class="text-center"><i class="fa fa-barcode fa-2x"> </i> <br/> 产品二维码 </div></td>
+            <td><div class="text-center"><i class="fa fa-bullseye fa-2x"> </i> <br/> 产品防伪追踪 </div></td>
+            <td><div class="text-center"><i class="fa fa-cloud fa-2x"> </i> <br/> 产品增强展示 </div></td>
+            <td><div class="text-center"><i class="fa fa-tasks fa-2x"> </i> <br/> 营销效果检测 </div></td>
+          </tr>
+          <tr>
+            <td><div class="text-center"><i class="fa fa-book fa-2x"> </i> <br/> 企业手机海边 </div></td>
+            <td><div class="text-center"><i class="fa fa-comments fa-2x"> </i> <br/> 产品微信营销 </div></td>
+            <td><div class="text-center"><i class="fa fa-phone fa-2x"> </i> <br/> 企业手机网站 </div></td>
+            <td><div class="text-center"><i class="fa fa-fire fa-2x"> </i> <br/> 移动电子商务 </div></td>
+          </tr>
+          <tr>
+
+            <td colspan="3"> </td>
+            <td><div class="text-right"> <a href="/case">@查看案例展示</a> </div></td>
+          </tr>
+        </tbody>
+      </table>
     </article>
   </div><!-- end page -->
 </div><!-- end content -->

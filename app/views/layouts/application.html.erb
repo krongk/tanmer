@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Tanmer" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : Keystore.value_for('site_title') %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Tanmer" %>">
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <link href="//libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
@@ -17,11 +17,11 @@
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> 导航</button>
               <% if u = (current_user || @user) %>
-                <a href="/<%= u.id %>" class="navbar-brand"><%= u.name %></a>
+                <a href="/users/<%= u.id %>" class="navbar-brand"><%= u.name %></a>
               <% else %>
                 <a href="/" class="navbar-brand main-color"><i class="fa fa-qrcode fa-2x"></i></a>
               <% end %>
-              <p class="brand-text">移动互联营销系统</p>
+              <p class="brand-text"><%= Keystore.value_for("site_title") %></p>
             </div><!-- end navbar-header -->
             <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
               <ul class="nav navbar-nav">
@@ -85,7 +85,7 @@
     </div><!-- end wrapper -->
     
     <footer class="hidden-xs">
-      <p class="pull-left">&copy; 版权所有 2014. 探码.</p>
+      <p class="pull-left">&copy; 版权所有 2014. <%= Keystore.value_for("site_title") %>.</p>
     </footer>
     
     <!-- Le javascript
@@ -96,9 +96,7 @@
       $(document).ready(function() {
         
         $('.dropdown-toggle').dropdown();
-        
         var $container = $('.portfolio-wrapper');
-        
         $container.imagesLoaded( function(){
           $container.isotope({
             itemSelector : '.card',

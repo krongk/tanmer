@@ -1,5 +1,9 @@
+<% title '搜索' + params[:search] %>
+
 <% content_for :side_bar do %>
-  共查询到记录<%= @pages.size %>条...
+  <p>
+    共搜索到记录<strong><%= @pages.size %></strong>条...
+  </p>
 <% end %>
 
 <div class="content">
