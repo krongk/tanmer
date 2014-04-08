@@ -10,83 +10,87 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="row">
-        <div class="col-md-3 sidebar">
-          <div class="navbar" role="navigation">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> 导航</button>
-              <% if u = (current_user || @user) %>
-                <a href="/users/<%= u.id %>" class="navbar-brand"><%= u.name %></a>
-              <% else %>
-                <a href="/" class="navbar-brand main-color"><i class="fa fa-qrcode fa-2x"></i></a>
-              <% end %>
-              <p class="brand-text"><%= Keystore.value_for("site_title") %></p>
-            </div><!-- end navbar-header -->
-            <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
-              <ul class="nav navbar-nav">
-                <li class="title">菜单</li>
-                <li class="active"><a href="/">关于</a></li>
-                <%= render 'layouts/navigation_links' %>
-              </ul>
-              <ul class="nav navbar-nav">
-                <% if user_signed_in? %>
-                  <li class="title">管理</li>
-                   <li>
-                    <%= link_to new_user_page_path(current_user.id), class: "active" do %>
-                      <i class="fa fa-plus"></i>  添加页面
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to books_path do %>
-                      <i class="fa fa-book"></i>  查看订单
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to user_members_path(current_user) do %>
-                      <i class="fa fa-users"></i>  查看会员
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to user_pages_path(current_user.id, qrcode: true) do %>
-                      <i class="fa fa-qrcode"></i>  打印二维码
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to user_pages_path(current_user.id) do %>
-                      <i class="fa fa-list"></i>  产品列表
-                    <% end %>
-                  </li>
+    <% if @page && @page.typo == 'single page' %>
+      <%= raw @page.content %>
+    <% else %>
+      <div class="wrapper">
+        <div class="row">
+          <div class="col-md-3 sidebar">
+            <div class="navbar" role="navigation">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> 导航</button>
+                <% if u = (current_user || @user) %>
+                  <a href="/users/<%= u.id %>" class="navbar-brand"><%= u.name %></a>
                 <% else %>
-                  <li>
-                    <%= link_to case_path do %>
-                      <i class="fa fa-list"></i>  案例中心
-                    <% end %>
-                  </li>
+                  <a href="/" class="navbar-brand main-color"><i class="fa fa-qrcode fa-2x"></i></a>
                 <% end %>
-              </ul>
-              <%= yield(:side_bar) %>
-              <form class="navbar-form" role="search" action="/search">
-                <div class="input-group">
-                  <input name="search" type="text" class="form-control" placeholder="标题/产品/电话号码..." value="" />
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
-                  </span>
-                </div><!-- end input group -->
-              </form><!-- end navbar-form -->
-            </div><!-- end navbar-collapse -->
-          </div><!-- end navbar -->
-        </div><!-- end col -->
-        <div class="col-xs-12 col-sm-12 col-md-9">
-          <%= render 'layouts/messages' %>
-          <%= yield %>
-        </div><!-- end col -->
-      </div><!-- end row -->
-    </div><!-- end wrapper -->
-    
-    <footer class="hidden-xs">
-      <p class="pull-left">&copy; 版权所有 2014. <%= Keystore.value_for("site_title") %>.</p>
-    </footer>
+                <p class="brand-text"><%= Keystore.value_for("site_title") %></p>
+              </div><!-- end navbar-header -->
+              <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
+                <ul class="nav navbar-nav">
+                  <li class="title">菜单</li>
+                  <li class="active"><a href="/">关于</a></li>
+                  <%= render 'layouts/navigation_links' %>
+                </ul>
+                <ul class="nav navbar-nav">
+                  <% if user_signed_in? %>
+                    <li class="title">管理</li>
+                     <li>
+                      <%= link_to new_user_page_path(current_user.id), class: "active" do %>
+                        <i class="fa fa-plus"></i>  添加页面
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to books_path do %>
+                        <i class="fa fa-book"></i>  查看订单
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to user_members_path(current_user) do %>
+                        <i class="fa fa-users"></i>  查看会员
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to user_pages_path(current_user.id, qrcode: true) do %>
+                        <i class="fa fa-qrcode"></i>  打印二维码
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to user_pages_path(current_user.id) do %>
+                        <i class="fa fa-list"></i>  产品列表
+                      <% end %>
+                    </li>
+                  <% else %>
+                    <li>
+                      <%= link_to case_path do %>
+                        <i class="fa fa-list"></i>  案例中心
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+                <%= yield(:side_bar) %>
+                <form class="navbar-form" role="search" action="/search">
+                  <div class="input-group">
+                    <input name="search" type="text" class="form-control" placeholder="标题/产品/电话号码..." value="" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
+                    </span>
+                  </div><!-- end input group -->
+                </form><!-- end navbar-form -->
+              </div><!-- end navbar-collapse -->
+            </div><!-- end navbar -->
+          </div><!-- end col -->
+          <div class="col-xs-12 col-sm-12 col-md-9">
+            <%= render 'layouts/messages' %>
+            <%= yield %>
+          </div><!-- end col -->
+        </div><!-- end row -->
+      </div><!-- end wrapper -->
+      
+      <footer class="hidden-xs">
+        <p class="pull-left">&copy; 版权所有 2014. <%= Keystore.value_for("site_title") %>.</p>
+      </footer>
+    <% end %>
     
     <!-- Le javascript
     ================================================== -->
