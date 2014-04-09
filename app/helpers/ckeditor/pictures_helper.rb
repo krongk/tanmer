@@ -1,2 +1,0 @@
-module Ckeditor::PicturesHelper
-end
