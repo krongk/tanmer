@@ -15,15 +15,15 @@ Ckeditor.setup do |config|
   # config.attachment_file_types = ["doc", "docx", "xls", "odt", "ods", "pdf", "rar", "zip", "tar", "swf"]
 
   # Setup authorization to be run as a before filter
-  #config.authorize_with :cancan
-  config.current_user_method do
-    current_user
-  end
+  # config.authorize_with :cancan
+  # config.current_user_method do
+  #   current_user
+  # end
 
   # Asset model classes
   # config.picture_model { Ckeditor::Picture }
   # config.attachment_file_model { Ckeditor::AttachmentFile }
 
   # Paginate assets
-  # config.default_per_page = 24
+  config.default_per_page = 20
 end
