@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402142900) do
+ActiveRecord::Schema.define(version: 20140409155625) do
 
   create_table "books", force: true do |t|
     t.integer  "member_id",                  null: false
@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 20140402142900) do
   add_index "books", ["is_processed"], name: "index_books_on_is_processed", using: :btree
   add_index "books", ["member_id"], name: "idx__member", using: :btree
   add_index "books", ["page_id"], name: "index_books_on_page_id", using: :btree
+
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "ip_addresses", force: true do |t|
     t.integer  "page_id"
@@ -90,8 +106,9 @@ ActiveRecord::Schema.define(version: 20140402142900) do
   add_index "page_rates", ["page_id"], name: "index_page_rates_on_page_id", using: :btree
 
   create_table "pages", force: true do |t|
-    t.integer  "user_id",                                                         null: false
-    t.string   "title",        limit: 128,                                        null: false
+    t.integer  "user_id",                                                               null: false
+    t.string   "typo",         limit: 50,                           default: "default", null: false
+    t.string   "title",        limit: 128,                                              null: false
     t.string   "keywords"
     t.string   "description",  limit: 512
     t.string   "qrcode",       limit: 128
@@ -103,7 +120,7 @@ ActiveRecord::Schema.define(version: 20140402142900) do
     t.integer  "pv_count",                                          default: 0
     t.integer  "fav_count",                                         default: 0
     t.integer  "ip_count",                                          default: 0
-    t.string   "is_processed", limit: 50,                           default: "n", null: false
+    t.string   "is_processed", limit: 50,                           default: "n",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

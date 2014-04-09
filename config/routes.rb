@@ -1,4 +1,5 @@
 Tanmer::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   get "members/index"
   get "members/show"
   get "members/edit"

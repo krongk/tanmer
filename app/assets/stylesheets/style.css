@@ -1238,7 +1238,8 @@ dl:after {
 }
 .card .thumb img {
   width: 100%;
-  height: auto;
+  height: 200px;
+  overflow: hidden;
   position: relative;
   z-index: 1;
   border-bottom: 1px solid #e6e6e6;
