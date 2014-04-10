@@ -2,7 +2,7 @@ class Ckeditor::Picture < Ckeditor::Asset
   before_create :init_paperclip
 
   has_attached_file :data,
-                    :path => ":class/:attachment/:id/:style.:extension"
+                    :path => ":class/:attachment/:id/:style.:extension",
                     # :url  => "/ckeditor_assets/pictures/:id/:style.:extension",
                     # :path => ":rails_root/public/ckeditor_assets/pictures/:id/:style.:extension",
                     :styles => { :content => '640x960>', :thumb => '260x180#' }
