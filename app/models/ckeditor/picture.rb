@@ -1,6 +1,4 @@
 class Ckeditor::Picture < Ckeditor::Asset
-  before_create :init_paperclip
-
   has_attached_file :data,
                     :path => ":class/:attachment/:id/:style.:extension",
                     # :url  => "/ckeditor_assets/pictures/:id/:style.:extension",
