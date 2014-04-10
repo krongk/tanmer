@@ -31,6 +31,8 @@
           </div>
           <div id="collapseTwo" class="panel-collapse collapse">
             <div class="panel-body">
+              <%= f.input :typo, placeholder: 'default|single page', hint: "default: 默认效果<br> single: 只显示<内容>部分".html_safe%>
+
               <%= f.input :extend_url, placeholder: 'http://www.example.com/site.html', hint: '若该页面为一个扩展网页，或外部链接，请在这里输入链接路径，程序会自动跳转到该链接。' %>
             </div>
           </div>
@@ -42,17 +44,21 @@
     <% end %>
   </div>
   <div class="col-sm-4 col-md-6">
-    <h2>帮助说明</h2>
-    <h4>添加<在线预定>链接</h4>
+    <h3>帮助说明</h3>
+    <% if params[:action] == 'edit' %>
+      <%= link_to "预览", get_url(@page), target: '_blank' %>
+    <% end %>
+
+    <h4>添加<在线预定>链接:</h4>
     <pre>
 &lt;a id="online-order" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="在线预定"&gt;在线预定&lt;/a&gt;
-预览效果：
+<br>预览效果：
 <a id="online-order" href="#none" class="btn btn-default btn-lg" data-html="true" data-toggle="popover" title="" data-original-title="在线预定">在线预定</a>
     </pre>
-    <h4>添加<有奖转发>链接</h4>
+    <h4>添加<有奖转发>链接:</h4>
     <pre>
 &lt;a id="online-rate" href="#none" class="btn btn-default btn-lg btn-block" data-html="true" data-toggle="popover" title="" data-original-title="有奖转发"&gt;有奖转发&lt;/a&gt;
-预览效果：
+<br>预览效果：
 <a id="online-rate" href="#none" class="btn btn-default btn-lg" data-html="true" data-toggle="popover" title="" data-original-title="有奖转发">有奖转发</a>
     </pre>
 

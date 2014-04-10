@@ -20,6 +20,7 @@ zh-CN:
         pv_count: 页面浏览量
         fav_count: 收藏量
         is_processed: 是否处理
+        typo: 页面显示属性
     errors:
       page: 
   helpers:

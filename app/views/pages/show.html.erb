@@ -1,13 +1,12 @@
 <% title @page.title %>
-<% meta_keywords  [@page.title, '探码'].join('|')%>
+<% meta_keywords  [@page.title, Keystore.value_for("site_title")].join('|')%>
 <% meta_description @page.description %>
 
 <% content_for :side_bar do %>
   <ul class="nav navbar-nav hidden-sm hidden-xs">
     <li class="title">产品二维码</li>
     <li>
-      <img src="<%= @page.qrcode %>" alt="<%= get_url(@page) %>" title="<%= @page.title %>" class="qrcode-img" />
-      <p class="text-center">扫描本产品二维码，在手机上查看~</p>
+      <%= @page.keywords %>
     </li>
   </ul>
 <% end %>
@@ -53,15 +52,32 @@
       <div class="page">
         <% if user_signed_in? && current_user.id == @page.user_id %>
         <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">页面管理</h3>
-          </div>
           <div class="panel-body">
-            <%= link_to '修改', edit_user_page_path(current_user, @page), class: 'btn btn-primary btn-large' %> &nbsp;&nbsp;
-            <%= link_to '删除', [current_user, @page], method: :delete, data: { confirm: '删除以后无法恢复，确定要删除吗?' }, class: 'btn btn-grey btn-large' %>
+            <div class="btn-group">
+              <%= link_to edit_user_page_path(current_user, @page), class: 'btn btn-lg btn-success' do %> 
+                <i class="fa fa-pencil"> </i> 修改
+              <% end %>
+              <%= link_to get_url(@page), class: 'btn btn-lg btn-success' do %> 
+                <i class="fa fa-only fa-star"></i> 预览
+              <% end %>
+              <%= link_to [current_user, @page], method: :delete, data: { confirm: '删除以后无法恢复，确定要删除吗?' }, class: 'btn btn-lg btn-success' do %>
+                <i class="fa fa-trash-o"> </i> 删除
+              <% end %>
+            </div>
+            
           </div>
         </div>
         <% end %>
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">二维码展示</h3>
+          </div>
+          <div class="panel-body">
+            <img src="<%= @page.qrcode %>" alt="<%= get_url(@page) %>" title="<%= @page.title %>" class="qrcode-img" />
+            <div class="text-center"><em> <%= @page.title %> </em></div>
+          </div>
+        </div>
 
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -72,17 +88,23 @@
           </div>
         </div>
 
-        <ul class="list-group">
-          <li class="list-group-item active">
-            会员页面转发统计
-          </li>
-          <% @page.page_rates.order("ip_count desc").each do |pr| %>
-            <li class="list-group-item">
-              <b><%= pr.member.phone %>(<%= pr.member.name %>)</b>: 
-              <span class="badge badge-important"><%= pr.ip_count %></span>
-              <span class="badge badge-important"><%= pr.pv_count %></span>
-            </li>
-          <% end %>
+        <div class="panel panel-primary">
+          <table class="table table-alternative table-hover">
+            <thead>
+              <tr>
+                <th colspan="3">会员页面转发统计</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @page.page_rates.order("ip_count desc").each_with_index do |pr, index| %>
+                <tr>
+                  <td><%= pr.member.phone %>(<%= pr.member.name %>)</td>
+                  <td><span class="label label-medium label-<%= index > 2 ? 'info' : 'warning' %>"><%= pr.ip_count %></span></td>
+                  <td><span class="label label-medium label-<%= index > 2 ? 'info' : 'warning' %>"><%= pr.pv_count %></span></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

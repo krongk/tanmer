@@ -1998,7 +1998,7 @@ label.checkbox input[type="checkbox"],
 label.radio input[type="checkbox"],
 label.checkbox input[type="radio"],
 label.radio input[type="radio"] {
-  display: none;
+  display: block;
 }
 label.checkbox span,
 label.radio span {

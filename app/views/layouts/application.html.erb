@@ -10,7 +10,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <% if @page && @page.typo == 'single page' && params[:controller] == 'home' && params[:action] == 'show' %>
+    <% if @page && @page.typo == 'single' && params[:controller] == 'home' && params[:action] == 'show' %>
       <%= raw @page.content %>
       <%= render partial: 'pages/order_rate_form' %>
     <% else %>

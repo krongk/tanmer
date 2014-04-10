@@ -101,7 +101,7 @@ class PagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:user_id, :title, :keywords, :description, :content, :qrcode, :short_title, :extend_url, :properties, :amount, :price, :view_count, :fav_count, :is_processed)
+      params.require(:page).permit(:user_id, :title, :keywords, :description, :content, :qrcode, :short_title, :extend_url, :properties, :amount, :price, :view_count, :fav_count, :is_processed, :typo)
     end
 
     def generate_qrcode(page)
