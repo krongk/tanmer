@@ -23,3 +23,7 @@ ADMIN_NAME: master
 ADMIN_EMAIL: admin@rxy123.com
 ADMIN_PASSWORD: rxy123.com
 ROLES: [admin, user, VIP]
+
+#Qiniu store
+QINIU_ACCESS_KEY: HXrvQOeDfAizpMzdanxSMiotX60zWuDXAseybFcx
+QINIU_SECRET_KEY: n886ogK5IGUwYx-M4m-NLSaP0-OTGD2_eCCsqId_
