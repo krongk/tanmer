@@ -19,6 +19,7 @@
           <div class="page-header">
             <h1> <%= @page.title %></h1>
             <p class="lead"><%= @page.description %></p>
+
           </div><!-- end page-header -->
           <div class="row">
             <div class="col-md-12">
@@ -38,7 +39,9 @@
             </div><!-- end col -->
           </div>
           <% if @page.extend_url.blank? %>
-            <%= raw @page.content %>
+            <div id="editable" contenteditable="true">
+              <%= raw @page.content %>
+            </div>
           <% else %>
             扩展链接： <%= link_to get_url(@page), get_url(@page) %>
           <% end %>
@@ -54,8 +57,13 @@
         <div class="panel panel-primary">
           <div class="panel-body">
             <div class="btn-group">
+              <%= simple_form_for([current_user, @page]) do |f| %>
+                <%= f.input :content, as: :hidden %>
+                <%= f.button :submit, id: "page_content_submit", value: "保存", class: "btn btn-large btn-default btn-block" %>
+              <% end %>
+
               <%= link_to edit_user_page_path(current_user, @page), class: 'btn btn-lg btn-success' do %> 
-                <i class="fa fa-pencil"> </i> 修改
+                <i class="fa fa-pencil"> </i> 编辑
               <% end %>
               <%= link_to get_url(@page), class: 'btn btn-lg btn-success' do %> 
                 <i class="fa fa-only fa-star"></i> 预览
@@ -112,3 +120,22 @@
 </div>
 
 <%= render partial: 'pages/order_rate_form' %>
+
+<script>
+  // inline edit page content
+  //Guide: http://docs.ckeditor.com/#!/guide/dev_inline
+
+  // Turn off automatic editor creation first.
+  CKEDITOR.disableAutoInline = true;
+  CKEDITOR.inline( 'editable' );
+  $('#page_content_submit').attr('disabled', true); 
+
+  //save change
+  CKEDITOR.instances.editable.on( 'blur', function(){
+    $('#page_content_submit').attr('disabled', false); 
+    $('#page_content_submit').css("background-color","#D6D6FF");
+    var data = CKEDITOR.instances.editable.getData();
+    $('#page_content').val(data);
+  } );
+  
+</script>
