@@ -1,3 +1,6 @@
+<% if @page && !@page.extend_url.blank? && params[:controller] == "home" %>
+  <%= raw @page.content %>
+<% else %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -186,3 +189,4 @@
 
   </body>
 </html>
+<% end %>

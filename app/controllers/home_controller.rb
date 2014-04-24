@@ -8,6 +8,8 @@ class HomeController < ApplicationController
   end
 
   def show
+    #{"controller"=>"home", "action"=>"show", "user_id"=>"2", "id"=>"6a1bb3ca98"}
+    #render text: params and return 
     #set page
     if params[:id] =~ /^\d+$/i
       @page = Page.find_by(id: params[:id])
@@ -34,14 +36,14 @@ class HomeController < ApplicationController
 
     #extend URL redirect
     respond_to do |format|
-      unless @page.extend_url.blank?
+      # unless @page.extend_url.blank?
        
-        format.html { redirect_to  @page.extend_url }
-        format.json { render action: 'show', status: :created, location: @page }
-      else
+      #   format.html { redirect_to  @page.extend_url }
+      #   format.json { render action: 'show', status: :created, location: @page }
+      # else
         format.html { render action: 'show' }
         format.json { render json: @page.errors, status: :unprocessable_entity }
-      end
+      # end
     end
   end
 

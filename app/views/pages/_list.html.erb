@@ -18,6 +18,7 @@
         <% end %>
         <li class="pull-right">
         <% if user_signed_in? && current_user.id == page.user_id %>
+          <%= link_to '拷贝', new_user_page_path(extend_url: get_url(page)) %> |
           <%= link_to '修改', edit_user_page_path(current_user, page) %> |
           <%= link_to '删除', [current_user, page], method: :delete, data: { confirm: '删除以后无法恢复，确定要删除吗?' } %>
         <% end %>

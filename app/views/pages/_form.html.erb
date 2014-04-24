@@ -8,7 +8,9 @@
         <%= f.input :keywords %>
         <%= f.input :description, :as => :text %>
         <%#= f.input :content %>
-        <%= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'custom', height: "400px"} } %>
+
+        <%= f.input :content, :as => :ckeditor, :input_html => {value: @page.content || '模板自动生成，这里不用填写', ckeditor: {:toolbar => 'custom', height: "400px"} } %>
+
       </div>
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
@@ -33,7 +35,7 @@
             <div class="panel-body">
               <%= f.input :typo, placeholder: 'default|single page', hint: "default: 默认效果<br> single: 只显示<内容>部分".html_safe%>
 
-              <%= f.input :extend_url, placeholder: 'http://www.example.com/site.html', hint: '若该页面为一个扩展网页，或外部链接，请在这里输入链接路径，程序会自动跳转到该链接。' %>
+              <%= f.input :extend_url, placeholder: 'http://www.example.com/site.html', hint: '若该页面为一个扩展网页，或外部链接，请在这里输入链接路径，程序会自动跳转到该链接。', input_html: {value: @page.extend_url || params[:extend_url]} %>
             </div>
           </div>
         </div>

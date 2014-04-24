@@ -1,3 +1,4 @@
+require 'open-uri'
 class PagesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_user_and_tags, only: [:index, :show, :tag, :search]
@@ -29,8 +30,12 @@ class PagesController < ApplicationController
     @page = Page.new(page_params)
     @page.user_id = current_user.id
 
+    unless page_params[:extend_url].blank?
+      page_content = get_extend_page_content(page_params[:extend_url])
+    end
+
     respond_to do |format|
-      if @page.save && PageContent.create!(page_id: @page.reload.id, content: page_params[:content])
+      if @page.save && PageContent.create!(page_id: @page.reload.id, content: page_content)
         update_tag(@page)
         generate_qrcode(@page)
         Keystore.increment_value_for("user:#{@page.user_id}:page_count")
@@ -84,6 +89,7 @@ class PagesController < ApplicationController
   end
 
   private
+
     def set_user_and_tags
       @user = User.find_by(id: params[:user_id])
       @user ||= current_user
@@ -123,6 +129,16 @@ class PagesController < ApplicationController
       page.save!
     end
 
+    #extend url like: http://www.yufuwu.cn/p/u1-pa64b0310c3
+    def get_extend_page_content(extend_url)
+      begin
+       doc = open(extend_url).read
+      rescue => ex
+        puts ex.message
+        doc = "拷贝源文件失败， 请检查链接是否有效：#{extend_url}"
+      end
+      return doc
+    end
     # def get_short_title(title)
     #   return if title.blank?
     #   chars = []
