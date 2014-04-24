@@ -45,6 +45,12 @@
                       <% end %>
                     </li>
                     <li>
+                      <%= link_to user_pages_path(current_user.id) do %>
+                        <i class="fa fa-list"></i>  页面列表
+                      <% end %>
+                    </li>
+                    
+                    <li>
                       <%= link_to books_path do %>
                         <i class="fa fa-book"></i>  查看订单
                       <% end %>
@@ -59,11 +65,7 @@
                         <i class="fa fa-qrcode"></i>  打印二维码
                       <% end %>
                     </li>
-                    <li>
-                      <%= link_to user_pages_path(current_user.id) do %>
-                        <i class="fa fa-list"></i>  产品列表
-                      <% end %>
-                    </li>
+                    
                   <% else %>
                     <li>
                       <%= link_to case_path do %>

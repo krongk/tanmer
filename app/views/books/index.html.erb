@@ -15,7 +15,7 @@
       <tr>
         <td><%= link_to book.page.title, get_url(book.page) %></td>
         <td><%= book.member.phone %></td>
-        <td><%= book.member.name %><%= book.member.email %><%= book.member.address %><%= book.message %></td>
+        <td><%= [book.member.name, book.member.address, book.message].join(', ') %></td>
         <td><%= book.created_at.strftime("%Y-%m-%d %H:%M") %></td>
         <td><%= link_to '删除', book, method: :delete, data: { confirm: '确定要删除吗?' } %></td>
       </tr>
