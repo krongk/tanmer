@@ -1,59 +1,50 @@
-Tanmer
-========================
+#prepare install
+sudo apt-cache search git
+sudo apt-get update
 
-This application was generated with the rails_apps_composer gem:
-https://github.com/RailsApps/rails_apps_composer
-provided by the RailsApps Project:
-http://railsapps.github.io/
+#Git
+sudo apt-get install git-core
 
-________________________
+#MySQL
+# http://wiki.ubuntu.org.cn/MySQL
 
-Recipes:
+sudo apt-get install mysql-server mysql-client
+sudo apt-get install libmysql-ruby libmysqlclient-dev
 
-* apps4
-* controllers
-* core
-* email
-* extras
-* frontend
-* gems
-* git
-* init
-* models
-* prelaunch
-* railsapps
-* readme
-* routes
-* saas
-* setup
-* testing
-* views
+#RVM
+# http://rvm.io/rvm/install
+\curl -sSL https://get.rvm.io | bash
 
-Preferences:
+  #安装完后，在Ubuntu上运行：，即可加载环境
+  source /etc/profile.d/rvm.sh
+  
+  #安装了RVM后，运行ruby, rails 的命令，提示找不到这些命令，是因为没有加载尽量，需要运行；
+  source   ~/.profile
+  source   ~/.bash_profile
 
-* git: true
-* apps4: none
-* dev_webserver: passenger
-* prod_webserver: passenger
-* database: mysql
-* templates: erb
-* unit_test: rspec
-* integration: none
-* continuous_testing: none
-* fixtures: none
-* frontend: bootstrap3
-* email: gmail
-* authentication: devise
-* devise_modules: default
-* authorization: cancan
-* form_builder: simple_form
-* starter_app: admin_app
-* quiet_assets: true
-* better_errors: true
-* ban_spiders: true
-* jsruntime: true
-* github: true
+  #修改安装源
+  sed -i 's!cache.ruby-lang.org/pub/ruby!ruby.taobao.org/mirrors/ruby!' $rvm_path/config/db
 
-________________________
+#Ruby
+rvm list known
+rvm install 2.0.0
+  
+  gem sources --remove https://rubygems.org/
+  gem sources -a http://ruby.taobao.org/
+  
+#Rails
+gem install rails
 
-License
+#Passenger
+gem install passenger
+
+#Nginx
+rvmsudo passenger-install-nginx-module
+
+#Make nginx command available
+wget -O init-deb.sh http://library.linode.com/assets/660-init-deb.sh
+
+sudo service nginx start
+
+#rMagick
+sudo apt-get install imagemagick
