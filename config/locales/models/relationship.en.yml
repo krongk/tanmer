@@ -1,0 +1,11 @@
+---
+en:
+  active_record:
+    models:
+      relationship: Relationship
+    attributes:
+      relationship: {}
+    errors:
+      relationship: 
+  helpers:
+    relationship: 

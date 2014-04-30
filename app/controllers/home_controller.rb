@@ -62,6 +62,8 @@ class HomeController < ApplicationController
       end
     end
 
+    @users = User.where('typo = "seed" and name like ?', "%#{params[:search]}%") if current_user
+    
     @pages = if current_user 
       current_user.pages.search(params[:search]).order("updated_at desc").page(params[:page])
     elsif @user

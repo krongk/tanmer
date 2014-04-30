@@ -65,7 +65,6 @@
                         <i class="fa fa-qrcode"></i>  打印二维码
                       <% end %>
                     </li>
-                    
                   <% else %>
                     <li>
                       <%= link_to case_path do %>
@@ -74,10 +73,21 @@
                     </li>
                   <% end %>
                 </ul>
-                <%= yield(:side_bar) %>
+                <ul class="nav navbar-nav">
+                  <li class="title">资源</li>
+                  <li>
+                    <% if user_signed_in? %>
+                    <%= link_to user_path(current_user.id) do %>
+                      <i class="fa fa-qrcode"></i>  我的资源
+                    <% end %>
+                    <% end %>
+                  </li>
+                   <%= yield(:side_bar) %>
+                </ul>
+
                 <form class="navbar-form" role="search" action="/search">
                   <div class="input-group">
-                    <input name="search" type="text" class="form-control" placeholder="标题/产品/电话号码..." value="" />
+                    <input name="search" type="text" class="form-control" placeholder="标题/应用/电话号码..." value="" />
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
                     </span>

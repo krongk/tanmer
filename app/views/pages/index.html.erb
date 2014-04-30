@@ -17,9 +17,9 @@
       还没有任何产品.
     <% end %>
     <% if params[:qrcode] %>
-      <%= render partial: 'pages/list_qr' %>
+      <%= render partial: 'pages/list_qr', locals: {pages: @pages}  %>
     <% else %>
-       <%= render partial: 'pages/list' %>
+       <%= render partial: 'pages/list', locals: {pages: @pages} %>
     <% end %>
   </div><!-- end portfolio-wrapper -->
   <div class="pagination-wrapper">

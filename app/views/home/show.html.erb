@@ -3,13 +3,10 @@
 <% meta_description @page.description %>
 
 <% content_for :side_bar do %>
-  <ul class="nav navbar-nav hidden-sm hidden-xs">
-    <li class="title">产品二维码</li>
-    <li>
-      <img src="<%= @page.qrcode %>" alt="<%= get_url(@page) %>" title="<%= @page.title %>" class="qrcode-img" />
-      <p class="text-center">扫描本产品二维码，在手机上查看~</p>
-    </li>
-  </ul>
+  <li>
+    <img src="<%= @page.qrcode %>" alt="<%= get_url(@page) %>" title="<%= @page.title %>" class="qrcode-img" />
+    <p class="text-center">扫描本产品二维码，在手机上查看~</p>
+  </li>
 <% end %>
 
 <div class="content">

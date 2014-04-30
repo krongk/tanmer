@@ -10,12 +10,16 @@ Tanmer::Application.routes.draw do
   devise_for :members
   resources :books
   resources :keystores
+  resources :relationships, only: [:create, :destroy]
 
   root :to => "home#index"
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users do
     resources :pages
     resources :members
+    member do
+      get :following, :followers
+    end
   end
 
   #match home search/case special path

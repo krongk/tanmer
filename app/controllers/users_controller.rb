@@ -7,10 +7,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    redirect_to user_pages_path(@user)
+    @user = current_user || User.find(params[:id])
+    @feed_pages = @user.feed.page(params[:page])
+    @users = @user.followed_users.page(params[:page])
   end
-  
+
   def update
     authorize! :update, @user, :message => '没有权限.'
     @user = User.find(params[:id])

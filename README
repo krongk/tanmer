@@ -1,3 +1,6 @@
+Install environment on West Server.
+-------
+
 #prepare install
 sudo apt-cache search git
 sudo apt-get update

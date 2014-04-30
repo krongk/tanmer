@@ -1,9 +1,24 @@
 <% title '搜索' + params[:search] %>
 
 <% content_for :side_bar do %>
-  <p>
-    共搜索到记录<strong><%= @pages.size %></strong>条...
-  </p>
+  <li><small>共搜索到应用<strong><%= @users.size %></strong>个，页面<strong><%= @pages.size %></strong>个</small></li>
+  <li><ul class="nav navbar-nav">
+      <% @users.each do |user| %>
+        <% next if current_user == user %>
+        <li>
+          <% if current_user && current_user != user %>
+            <div id="follow_form_<%= user.id %>">
+            <% if current_user.following?(user) %>
+              <%= render partial: 'users/unfollow', locals: {other_user: user} %>
+            <% else %>
+              <%= render partial: 'users/follow', locals: {other_user: user} %>
+            <% end %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
 <% end %>
 
 <div class="content">

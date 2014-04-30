@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Page < ActiveRecord::Base
   belongs_to :user
   has_one :page_content, :dependent => :destroy, :autosave => true
@@ -28,6 +29,14 @@ class Page < ActiveRecord::Base
     else
       "/assets/avatar.jpg"
     end
+  end
+
+  #get pages from user and user's followers
+  #this function is called on User model
+  def self.from_users_followed_by(user)
+    followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    #where("user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: user.id)
+    where("user_id IN (#{followed_user_ids})", user_id: user.id)
   end
 
   #get recuent record

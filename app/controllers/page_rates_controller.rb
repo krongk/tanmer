@@ -1,4 +1,5 @@
 class PageRatesController < ApplicationController
+  before_filter :authenticate_user!, only: [:index]
   before_action :set_page_rate, only: [:show, :edit, :update, :destroy]
 
   # GET /page_rates
