@@ -1,0 +1,33 @@
+<h1>Listing payment_notifies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Payment</th>
+      <th>Payment number</th>
+      <th>Payment count</th>
+      <th>State</th>
+      <th>Cate</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payment_notifies.each do |payment_notify| %>
+      <tr>
+        <td><%= payment_notify.payment %></td>
+        <td><%= payment_notify.payment_number %></td>
+        <td><%= payment_notify.payment_count %></td>
+        <td><%= payment_notify.state %></td>
+        <td><%= payment_notify.cate %></td>
+        <td><%= payment_notify.status %></td>
+        <td><%= link_to '发货', user_payment_notify_path(current_user, payment_notify)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

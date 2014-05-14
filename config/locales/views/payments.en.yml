@@ -1,0 +1,20 @@
+---
+en:
+  payments:
+    index:
+      title: Payments
+    show:
+      title: Payment
+    edit:
+      title: Editing Payment
+    new:
+      title: New Payment
+  flash:
+    payments:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

@@ -1,0 +1,17 @@
+---
+en:
+  active_record:
+    models:
+      payment_notify: Payment notify
+    attributes:
+      payment_notify:
+        payment: Payment
+        payment_number: Payment number
+        payment_count: Payment count
+        state: State
+        cate: Cate
+        status: Status
+    errors:
+      payment_notify: 
+  helpers:
+    payment_notify: 

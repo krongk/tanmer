@@ -6,6 +6,12 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  #账户设置
+  def account
+    @payment = Payment.new
+  end
+
+  #我的订阅
   def show
     @user = current_user || User.find(params[:id])
     @feed_pages = @user.feed.page(params[:page])

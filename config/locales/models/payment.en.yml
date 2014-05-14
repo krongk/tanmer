@@ -1,0 +1,20 @@
+---
+en:
+  active_record:
+    models:
+      payment: Payment
+    attributes:
+      payment:
+        user: User
+        price: Price
+        state: State
+        pending_at: Pending at
+        completed_at: Completed at
+        canceled_at: Canceled at
+        paid_at: Paid at
+        trade_no: Trade no
+        note: Note
+    errors:
+      payment: 
+  helpers:
+    payment: 

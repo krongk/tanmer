@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :pages, dependent: :destroy
   has_many :members, dependent: :destroy
+  has_many :orders, dependent: :destroy
   
   #scope :published,               -> { where(published: true) }
   #scope :published_and_commented, -> { published.where("comments_count > 0") }

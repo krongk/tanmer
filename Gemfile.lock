@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/chloerei/alipay.git
+  revision: 58fa4ffe4d9e27abe469985e284e3939de553ee6
+  specs:
+    alipay (0.0.3)
+
+GIT
   remote: git@github.com:galetahub/ckeditor.git
   revision: b19f776a43e188e48fd409353366f05bdab3090d
   specs:
@@ -206,6 +212,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  alipay!
   better_errors
   binding_of_caller
   bootstrap-sass

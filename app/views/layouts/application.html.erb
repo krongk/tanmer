@@ -34,19 +34,15 @@
                 <ul class="nav navbar-nav">
                   <li class="title">菜单</li>
                   <li class="active"><a href="/">关于</a></li>
+                  <!-- <li class="active"><a href="/users/account">账户充值</a></li> -->
                   <%= render 'layouts/navigation_links' %>
                 </ul>
                 <ul class="nav navbar-nav">
                   <% if user_signed_in? %>
-                    <li class="title">管理</li>
-                     <li>
-                      <%= link_to new_user_page_path(current_user.id), class: "active" do %>
-                        <i class="fa fa-plus"></i>  添加页面
-                      <% end %>
-                    </li>
+                    <li class="title">应用管理</li>
                     <li>
                       <%= link_to user_pages_path(current_user.id) do %>
-                        <i class="fa fa-list"></i>  页面列表
+                        <i class="fa fa-list"></i>  我的应用
                       <% end %>
                     </li>
                     
@@ -65,6 +61,11 @@
                         <i class="fa fa-qrcode"></i>  打印二维码
                       <% end %>
                     </li>
+                     <li>
+                      <%= link_to new_user_page_path(current_user.id), class: "active" do %>
+                        <i class="fa fa-plus"></i>  添加应用
+                      <% end %>
+                    </li>
                   <% else %>
                     <li>
                       <%= link_to case_path do %>
@@ -73,18 +74,18 @@
                     </li>
                   <% end %>
                 </ul>
-                <ul class="nav navbar-nav">
-                  <li class="title">资源</li>
-                  <li>
-                    <% if user_signed_in? %>
-                    <%= link_to user_path(current_user.id) do %>
-                      <i class="fa fa-qrcode"></i>  我的资源
-                    <% end %>
-                    <% end %>
-                  </li>
-                   <%= yield(:side_bar) %>
-                </ul>
-
+                <% if user_signed_in? %>
+                  <ul class="nav navbar-nav">
+                    <li class="title">资源管理</li>
+                    <li>
+                      <%= link_to user_path(current_user.id) do %>
+                        <i class="fa fa-qrcode"></i>  订阅资源
+                      <% end %>
+                    </li>
+                  </ul>
+                <% end %>
+                <%= yield(:side_bar) %>
+                
                 <form class="navbar-form" role="search" action="/search">
                   <div class="input-group">
                     <input name="search" type="text" class="form-control" placeholder="标题/应用/电话号码..." value="" />
@@ -96,7 +97,7 @@
               </div><!-- end navbar-collapse -->
             </div><!-- end navbar -->
           </div><!-- end col -->
-          <div class="col-xs-12 col-sm-12 col-md-9">
+          <div class="col-xs-12 col-sm-12 col-md-9 content">
             <%= render 'layouts/messages' %>
             <%= yield %>
           </div><!-- end col -->

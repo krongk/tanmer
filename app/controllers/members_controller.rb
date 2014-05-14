@@ -1,3 +1,7 @@
+#encoding: utf-8
+#保存会员信息
+#会员的定义： 预定产品的、参加有奖转发的都自动转为会员
+
 class MembersController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
   before_action :set_member, only: [:show, :edit, :update, :destroy]

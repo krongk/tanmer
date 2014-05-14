@@ -1,3 +1,5 @@
+#encoding: utf-8
+#处理消费者预定、在线报名
 class BooksController < ApplicationController
   before_filter :authenticate_user!, except: [:new, :create]
   before_action :set_book, only: [:show, :edit, :update, :destroy]

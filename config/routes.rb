@@ -1,10 +1,12 @@
 Tanmer::Application.routes.draw do
+  
   mount Ckeditor::Engine => '/ckeditor'
   get "members/index"
   get "members/show"
   get "members/edit"
   get "members/update"
   get "members/destroy"
+  get "users/account"
   resources :page_rates
 
   devise_for :members
@@ -17,6 +19,13 @@ Tanmer::Application.routes.draw do
   resources :users do
     resources :pages
     resources :members
+    resources :payment_notifies
+    resources :payments do
+      collection do
+        post :alipay_notify
+      end
+    end    
+
     member do
       get :following, :followers
     end

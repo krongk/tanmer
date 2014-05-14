@@ -1,0 +1,2 @@
+module PaymentNotifiesHelper
+end

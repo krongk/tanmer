@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140428145330) do
+ActiveRecord::Schema.define(version: 20140513084759) do
 
   create_table "books", force: true do |t|
     t.integer  "member_id",                  null: false
@@ -118,6 +118,27 @@ ActiveRecord::Schema.define(version: 20140428145330) do
   add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
   add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
 
+  create_table "orders", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "page_id"
+    t.integer  "price"
+    t.integer  "discount"
+    t.string   "state",        default: "opening"
+    t.datetime "pending_at"
+    t.datetime "completed_at"
+    t.datetime "canceled_at"
+    t.datetime "paid_at"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string   "trade_no"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["page_id"], name: "index_orders_on_page_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
   create_table "page_contents", force: true do |t|
     t.integer "page_id"
     t.text    "content"
@@ -163,6 +184,35 @@ ActiveRecord::Schema.define(version: 20140428145330) do
   add_index "pages", ["user_id", "short_title"], name: "index_pages_on_user_id_and_short_title", unique: true, using: :btree
   add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
 
+  create_table "payment_notifies", force: true do |t|
+    t.integer  "payment_id"
+    t.string   "payment_number"
+    t.decimal  "payment_count",  precision: 8, scale: 2
+    t.string   "state"
+    t.string   "cate"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payment_notifies", ["payment_id"], name: "index_payment_notifies_on_payment_id", using: :btree
+
+  create_table "payments", force: true do |t|
+    t.integer  "user_id"
+    t.decimal  "price",        precision: 8, scale: 2
+    t.string   "state"
+    t.datetime "pending_at"
+    t.datetime "completed_at"
+    t.datetime "canceled_at"
+    t.datetime "paid_at"
+    t.string   "trade_no"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
+
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -203,19 +253,21 @@ ActiveRecord::Schema.define(version: 20140428145330) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "typo",                   limit: 50
+    t.string   "name"
+    t.string   "email",                                           null: false
+    t.string   "encrypted_password",                              null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                       default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "description",            limit: 1024
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -1,0 +1,20 @@
+---
+en:
+  payment_notifies:
+    index:
+      title: Payment notifies
+    show:
+      title: Payment notify
+    edit:
+      title: Editing Payment notify
+    new:
+      title: New Payment notify
+  flash:
+    payment_notifies:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

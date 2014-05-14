@@ -13,6 +13,8 @@
 #use on get_url and generate qrcode
 #HOST_NAME: http://www.yufuwu.cn
 HOST_NAME: http://localhost:3000
+SITE_NAME: tanmer.com
+SSL: false
 
 #email
 GMAIL_USERNAME: kenrome
@@ -22,8 +24,13 @@ GMAIL_PASSWORD: www.inruby.com
 ADMIN_NAME: master
 ADMIN_EMAIL: admin@rxy123.com
 ADMIN_PASSWORD: rxy123.com
-ROLES: [admin, user, VIP]
+ROLES: [admin, user, seed]
 
 #Qiniu store
 QINIU_ACCESS_KEY: HXrvQOeDfAizpMzdanxSMiotX60zWuDXAseybFcx
 QINIU_SECRET_KEY: n886ogK5IGUwYx-M4m-NLSaP0-OTGD2_eCCsqId_
+
+#Alipay
+ALIPAY_PID: 2088102635663013
+ALIPAY_KEY: 2pyzptdb47wo13fxdhsy9dq8g79z0wie
+ALIPAY_SELLER_EMAIL: kenrome@163.com
