@@ -36,14 +36,14 @@ class HomeController < ApplicationController
 
     #extend URL redirect
     respond_to do |format|
-      # unless @page.extend_url.blank?
+      unless @page.extend_url.blank?
        
-      #   format.html { redirect_to  @page.extend_url }
-      #   format.json { render action: 'show', status: :created, location: @page }
-      # else
+        format.html { redirect_to  @page.extend_url }
+        format.json { render action: 'show', status: :created, location: @page }
+      else
         format.html { render action: 'show' }
         format.json { render json: @page.errors, status: :unprocessable_entity }
-      # end
+      end
     end
   end
 

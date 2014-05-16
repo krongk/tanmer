@@ -15,7 +15,9 @@
       <ul class="list-inline filters">
         <% if page.user.typo == 'seed' %>
           <li><%= number_to_currency(page.price) %></li>
-          <li><%= link_to '拷贝', new_user_page_path(current_user, extend_url: get_url(page)) %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to '拷贝', new_user_page_path(current_user, extend_url: get_url(page)) %></li>
+          <% end %>
         <% else %>
           <% page.tag_list.each do |tag| %> 
             <li><%= link_to tag, tag_path(@user, tag) %></li>
