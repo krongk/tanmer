@@ -1,5 +1,7 @@
 <% if @page && !@page.extend_url.blank? && params[:controller] == "home" %>
   <%= raw @page.content %>
+<% elsif @page.typo == 'form' %>
+  <%= render file: @page.extend_url %>
 <% else %>
 <!DOCTYPE html>
 <html>
