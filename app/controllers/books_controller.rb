@@ -28,12 +28,14 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     page = Page.find(book_params[:page_id])
-    member = Member.find_by(phone: book_params[:phone])
-    member ||= Member.create!(
+
+    phone = book_params[:phone].nil? ? '18088'+ rand(699999).to_s : book_params[:phone]
+    member = Member.find_by(phone: phone)
+    member ||= Member.create(
       user_id: page.user_id, 
       name: book_params[:name], 
-      email: "#{book_params[:phone]}@qq.com", 
-      phone: book_params[:phone], 
+      email: "#{phone}@qq.com", 
+      phone: phone, 
       password: '000000', 
       password_confirmation: '000000',
       address: book_params[:address])

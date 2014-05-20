@@ -1,3 +1,9 @@
+rails g scaffold site user:references template:references template_theme:references short_title title domain qrcode_url is_published
+rails g scaffold site_page site:references title content form 
+rails g scaffold template cate title tags description base_dir tmp_index tmp_list tmp_detail has_theme:boolean has_multi_page:boolean
+rails g scaffold template_theme template:references name color preview_image preview_url head foot
+
+
 Install environment on West Server.
 -------
 

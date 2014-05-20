@@ -1,7 +1,7 @@
-<% if @page && !@page.extend_url.blank? && params[:controller] == "home" %>
+<% if @page && @page.extend_url.blank? && @page.typo == 'single'  %>
   <%= raw @page.content %>
-<% elsif @page.typo == 'form' %>
-  <%= render file: @page.extend_url %>
+<% elsif @page && @page.extend_url && @page.typo == 'form' %>
+  <%= render file: ['public/', @page.extend_url].join %>
 <% else %>
 <!DOCTYPE html>
 <html>
