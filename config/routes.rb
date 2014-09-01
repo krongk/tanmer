@@ -12,7 +12,14 @@ Tanmer::Application.routes.draw do
   resources :keystores
 
   root :to => "home#index"
-  devise_for :users, :controllers => {:registrations => "registrations"}
+
+  devise_for :users, :controllers => {:registrations => "registrations", omniauth_callbacks: "omniauth_callbacks"}
+  #match '/users/auth/:provider/callback', to: "omniauth_callbacks#all", via: :get
+
+  # devise_scope :users do
+  #   get "/auth/:provider/callback" => "omniauth_callbacks_controller#all"
+  # end
+
   resources :users do
     resources :pages
     resources :members

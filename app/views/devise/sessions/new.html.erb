@@ -23,4 +23,9 @@
         </div>
       <% end -%>
   <% end %>
+  <div>
+  <%= link_to "QQ账号登录",  user_omniauth_authorize_path(:tqq) %> &nbsp;&nbsp;|&nbsp;&nbsp;
+  <%= link_to "豆瓣账号登录",  user_omniauth_authorize_path(:douban) %>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <%= link_to "微博账号登录",  user_omniauth_authorize_path(:weibo) %>&nbsp;&nbsp;
+  </div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409155625) do
+ActiveRecord::Schema.define(version: 20140829073457) do
 
   create_table "books", force: true do |t|
     t.integer  "member_id",                  null: false
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 20140409155625) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "follows", force: true do |t|
+    t.string   "follower_type"
+    t.integer  "follower_id"
+    t.string   "followable_type"
+    t.integer  "followable_id"
+    t.datetime "created_at"
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
+  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
+
   create_table "ip_addresses", force: true do |t|
     t.integer  "page_id"
     t.string   "ip"
@@ -60,6 +71,17 @@ ActiveRecord::Schema.define(version: 20140409155625) do
   end
 
   add_index "keystores", ["key"], name: "index_keystores_on_user_id_and_key", unique: true, using: :btree
+
+  create_table "likes", force: true do |t|
+    t.string   "liker_type"
+    t.integer  "liker_id"
+    t.string   "likeable_type"
+    t.integer  "likeable_id"
+    t.datetime "created_at"
+  end
+
+  add_index "likes", ["likeable_id", "likeable_type"], name: "fk_likeables", using: :btree
+  add_index "likes", ["liker_id", "liker_type"], name: "fk_likes", using: :btree
 
   create_table "members", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -85,6 +107,17 @@ ActiveRecord::Schema.define(version: 20140409155625) do
   add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true, using: :btree
   add_index "members", ["user_id"], name: "idx__user_id", using: :btree
 
+  create_table "mentions", force: true do |t|
+    t.string   "mentioner_type"
+    t.integer  "mentioner_id"
+    t.string   "mentionable_type"
+    t.integer  "mentionable_id"
+    t.datetime "created_at"
+  end
+
+  add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
+  add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
+
   create_table "page_contents", force: true do |t|
     t.integer "page_id"
     t.text    "content"
@@ -107,7 +140,7 @@ ActiveRecord::Schema.define(version: 20140409155625) do
 
   create_table "pages", force: true do |t|
     t.integer  "user_id",                                                               null: false
-    t.string   "typo",         limit: 50,                           default: "default", null: false
+    t.string   "typo",         limit: 32,                           default: "default", null: false
     t.string   "title",        limit: 128,                                              null: false
     t.string   "keywords"
     t.string   "description",  limit: 512
@@ -129,6 +162,47 @@ ActiveRecord::Schema.define(version: 20140409155625) do
   add_index "pages", ["title"], name: "index_pages_on_title", using: :btree
   add_index "pages", ["user_id", "short_title"], name: "index_pages_on_user_id_and_short_title", unique: true, using: :btree
   add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
+
+  create_table "payment_notifies", force: true do |t|
+    t.integer  "payment_id"
+    t.boolean  "verify"
+    t.string   "payment_number"
+    t.decimal  "payment_count",  precision: 8, scale: 2
+    t.string   "state"
+    t.string   "cate"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payment_notifies", ["payment_id"], name: "index_payment_notifies_on_payment_id", using: :btree
+
+  create_table "payments", force: true do |t|
+    t.integer  "user_id"
+    t.decimal  "price",        precision: 8, scale: 2
+    t.string   "state"
+    t.datetime "pending_at"
+    t.datetime "completed_at"
+    t.datetime "canceled_at"
+    t.datetime "paid_at"
+    t.string   "trade_no"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
+
+  create_table "relationships", force: true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -159,19 +233,24 @@ ActiveRecord::Schema.define(version: 20140409155625) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "typo",                   limit: 50
+    t.string   "name"
+    t.string   "email",                                                                   null: false
+    t.string   "encrypted_password",                                                      null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                                               default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "description",            limit: 1024
+    t.decimal  "total_price",                         precision: 8, scale: 2
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
