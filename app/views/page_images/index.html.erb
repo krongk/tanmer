@@ -1,6 +1,6 @@
 <h1>Listing page_images</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Page</th>
@@ -14,8 +14,8 @@
   <tbody>
     <% @page_images.each do |page_image| %>
       <tr>
-        <td><%= page_image.page %></td>
-        <td><%= page_image.image %></td>
+        <td><%= image_tag page_image.image.url, style: 'width: 200px;' %></td>
+
         <td><%= link_to 'Show', page_image %></td>
         <td><%= link_to 'Edit', edit_page_image_path(page_image) %></td>
         <td><%= link_to 'Destroy', page_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
