@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829073457) do
+ActiveRecord::Schema.define(version: 20140902024844) do
 
   create_table "books", force: true do |t|
     t.integer  "member_id",                  null: false
@@ -125,6 +125,18 @@ ActiveRecord::Schema.define(version: 20140829073457) do
 
   add_index "page_contents", ["page_id"], name: "index_page_contents_on_page_id", using: :btree
 
+  create_table "page_images", force: true do |t|
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "page_images", ["page_id"], name: "index_page_images_on_page_id", using: :btree
+
   create_table "page_rates", force: true do |t|
     t.integer  "page_id"
     t.integer  "member_id"
@@ -236,11 +248,11 @@ ActiveRecord::Schema.define(version: 20140829073457) do
     t.string   "typo",                   limit: 50
     t.string   "name"
     t.string   "email",                                                                   null: false
-    t.string   "encrypted_password",                                                      null: false
+    t.string   "encrypted_password"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                               default: 0, null: false
+    t.integer  "sign_in_count",                                               default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -250,7 +262,7 @@ ActiveRecord::Schema.define(version: 20140829073457) do
     t.string   "description",            limit: 1024
     t.decimal  "total_price",                         precision: 8, scale: 2
     t.string   "provider"
-    t.string   "uid"
+    t.integer  "uid",                    limit: 8
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

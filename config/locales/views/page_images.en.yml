@@ -1,0 +1,20 @@
+---
+en:
+  page_images:
+    index:
+      title: Page images
+    show:
+      title: Page image
+    edit:
+      title: Editing Page image
+    new:
+      title: New Page image
+  flash:
+    page_images:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

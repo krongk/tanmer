@@ -1,4 +1,6 @@
 Tanmer::Application.routes.draw do
+  resources :page_images
+
   mount Ckeditor::Engine => '/ckeditor'
   get "members/index"
   get "members/show"

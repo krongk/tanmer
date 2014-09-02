@@ -1,0 +1,13 @@
+---
+en:
+  active_record:
+    models:
+      page_image: Page image
+    attributes:
+      page_image:
+        page: Page
+        image: Image
+    errors:
+      page_image: 
+  helpers:
+    page_image: 
