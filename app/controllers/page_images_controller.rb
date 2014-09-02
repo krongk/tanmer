@@ -1,5 +1,8 @@
 class PageImagesController < ApplicationController
-  before_action :set_page_image, only: [:show, :edit, :update, :destroy]
+  #skip CSRF on create.
+  skip_before_filter :verify_authenticity_token, only: [:upload]
+
+  before_action :set_page_image, only: [:show, :edit, :update, :destroy, :upload]
 
   # GET /page_images
   # GET /page_images.json
@@ -37,6 +40,21 @@ class PageImagesController < ApplicationController
     end
   end
 
+  def upload
+    logger.debug request.methods.sort
+
+    @page_image.image = params[:image]
+
+    respond_to do |format|
+      if @page_image.save!
+        format.html { redirect_to @page_image, notice: 'Page image was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @page_image.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # PATCH/PUT /page_images/1
   # PATCH/PUT /page_images/1.json
   def update

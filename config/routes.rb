@@ -1,5 +1,7 @@
 Tanmer::Application.routes.draw do
-  resources :page_images
+  resources :page_images do 
+    collection {post :upload}
+  end
 
   mount Ckeditor::Engine => '/ckeditor'
   get "members/index"
